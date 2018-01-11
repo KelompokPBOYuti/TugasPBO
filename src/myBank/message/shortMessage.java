@@ -88,7 +88,27 @@ public class shortMessage extends javax.swing.JDialog {
         okBtn.setForeground(new java.awt.Color(255, 255, 255));
         okBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         okBtn.setText("OK");
+        okBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         okBtn.setOpaque(true);
+        okBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                okBtnMouseMoved(evt);
+            }
+        });
+        okBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                okBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                okBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                okBtnMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -127,6 +147,9 @@ public class shortMessage extends javax.swing.JDialog {
             }
         });
         closeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeBtnMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 closeBtnMouseExited(evt);
             }
@@ -179,6 +202,30 @@ public class shortMessage extends javax.swing.JDialog {
     private void closeBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMousePressed
         closeBtn.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_closeBtnMousePressed
+
+    private void okBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okBtnMouseMoved
+        okBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+    }//GEN-LAST:event_okBtnMouseMoved
+
+    private void okBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okBtnMouseExited
+        okBtn.setBorder(null);
+    }//GEN-LAST:event_okBtnMouseExited
+
+    private void closeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseClicked
+        dispose();
+    }//GEN-LAST:event_closeBtnMouseClicked
+
+    private void okBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okBtnMousePressed
+        okBtn.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_okBtnMousePressed
+
+    private void okBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okBtnMouseReleased
+        okBtn.setBackground(new Color(35, 171, 226));
+    }//GEN-LAST:event_okBtnMouseReleased
+
+    private void okBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okBtnMouseClicked
+        dispose();
+    }//GEN-LAST:event_okBtnMouseClicked
 
     /**
      * @param args the command line arguments
