@@ -44,6 +44,7 @@ public class connectionDatabase {
                 shortMessage message = new shortMessage(null, true);
                 message.setMesage("Gagal koneksi", "Program gagal tutup koneksi <br> ke database");
                 message.setVisible(true);
+                System.out.println("gagal tut");
             }
         }
     }
