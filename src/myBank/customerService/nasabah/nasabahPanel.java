@@ -106,9 +106,17 @@ public class nasabahPanel extends javax.swing.JPanel {
         baruBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         baruBtn.setOpaque(true);
         baruBtn.setPreferredSize(new java.awt.Dimension(83, 40));
+        baruBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                baruBtnMouseMoved(evt);
+            }
+        });
         baruBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 baruBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                baruBtnMouseExited(evt);
             }
         });
 
@@ -369,6 +377,14 @@ public class nasabahPanel extends javax.swing.JPanel {
         new nasabahNew(null, true).show();        
 
     }//GEN-LAST:event_baruBtnMouseClicked
+
+    private void baruBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseExited
+        style.borderMouseExit(baruBtn);
+    }//GEN-LAST:event_baruBtnMouseExited
+
+    private void baruBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseMoved
+        style.borderMouseMoved(baruBtn);
+    }//GEN-LAST:event_baruBtnMouseMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
