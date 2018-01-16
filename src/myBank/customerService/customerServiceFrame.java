@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package myBank.customerService;
 
 import java.awt.Color;
+import javax.swing.JPanel;
+import myBank.customerService.nasabah.nasabahPanel;
 import myBank.style.buttonStyle;
 
 /**
@@ -15,12 +16,24 @@ import myBank.style.buttonStyle;
  */
 public class customerServiceFrame extends javax.swing.JFrame {
     buttonStyle style = new buttonStyle();
+    nasabahPanel nasabah = new nasabahPanel();
+
     /**
      * Creates new form customerServiceFrame
      */
     public customerServiceFrame() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+    }
+
+    private void showPanel(JPanel panel, String titleMenu) {
+        mainContentPanel.removeAll();
+        mainContentPanel.repaint();
+        mainContentPanel.revalidate();
+        mainContentPanel.add(panel);
+        titleLabel.setText(titleMenu);
+        mainContentPanel.repaint();
+        mainContentPanel.revalidate();
     }
 
     /**
@@ -42,17 +55,17 @@ public class customerServiceFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        nasabahPanel = new javax.swing.JPanel();
-        nasabahMenu = new javax.swing.JLabel();
-        tabunganPanel = new javax.swing.JPanel();
-        tabunganMenu = new javax.swing.JLabel();
-        debetPanel = new javax.swing.JPanel();
-        debetMenu = new javax.swing.JLabel();
-        logoutPanel = new javax.swing.JPanel();
-        logoutMenu = new javax.swing.JLabel();
+        nasabahMenu = new javax.swing.JPanel();
+        nasabahLabel = new javax.swing.JLabel();
+        tabunganMenu = new javax.swing.JPanel();
+        tabunganLabel = new javax.swing.JLabel();
+        debetMenu = new javax.swing.JPanel();
+        debetLabel = new javax.swing.JLabel();
+        logoutMenu = new javax.swing.JPanel();
+        logoutLabel = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
-        judulLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         mainContentPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -194,165 +207,168 @@ public class customerServiceFrame extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(32, 103, 178));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nasabahPanel.setBackground(new java.awt.Color(32, 103, 178));
-        nasabahPanel.setPreferredSize(new java.awt.Dimension(200, 40));
+        nasabahMenu.setBackground(new java.awt.Color(32, 103, 178));
+        nasabahMenu.setPreferredSize(new java.awt.Dimension(200, 40));
 
-        nasabahMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nasabahMenu.setForeground(new java.awt.Color(255, 255, 255));
-        nasabahMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/menuNasabah_30px.png"))); // NOI18N
-        nasabahMenu.setText("NASABAH");
-        nasabahMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nasabahMenu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        nasabahLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nasabahLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nasabahLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/menuNasabah_30px.png"))); // NOI18N
+        nasabahLabel.setText("NASABAH");
+        nasabahLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nasabahLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                nasabahMenuMouseMoved(evt);
+                nasabahLabelMouseMoved(evt);
             }
         });
-        nasabahMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        nasabahLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nasabahLabelMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                nasabahMenuMouseExited(evt);
+                nasabahLabelMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                nasabahMenuMousePressed(evt);
+                nasabahLabelMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                nasabahMenuMouseReleased(evt);
+                nasabahLabelMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout nasabahPanelLayout = new javax.swing.GroupLayout(nasabahPanel);
-        nasabahPanel.setLayout(nasabahPanelLayout);
-        nasabahPanelLayout.setHorizontalGroup(
-            nasabahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nasabahPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout nasabahMenuLayout = new javax.swing.GroupLayout(nasabahMenu);
+        nasabahMenu.setLayout(nasabahMenuLayout);
+        nasabahMenuLayout.setHorizontalGroup(
+            nasabahMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nasabahMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nasabahMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(nasabahLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
-        nasabahPanelLayout.setVerticalGroup(
-            nasabahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nasabahMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        nasabahMenuLayout.setVerticalGroup(
+            nasabahMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(nasabahLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel6.add(nasabahPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, -1));
+        jPanel6.add(nasabahMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, -1));
 
-        tabunganPanel.setBackground(new java.awt.Color(32, 103, 178));
-        tabunganPanel.setPreferredSize(new java.awt.Dimension(200, 40));
+        tabunganMenu.setBackground(new java.awt.Color(32, 103, 178));
+        tabunganMenu.setPreferredSize(new java.awt.Dimension(200, 40));
 
-        tabunganMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        tabunganMenu.setForeground(new java.awt.Color(255, 255, 255));
-        tabunganMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/tabunganMenu_30px.png"))); // NOI18N
-        tabunganMenu.setText("TABUNGAN");
-        tabunganMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tabunganMenu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        tabunganLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tabunganLabel.setForeground(new java.awt.Color(255, 255, 255));
+        tabunganLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/tabunganMenu_30px.png"))); // NOI18N
+        tabunganLabel.setText("TABUNGAN");
+        tabunganLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabunganLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                tabunganMenuMouseMoved(evt);
+                tabunganLabelMouseMoved(evt);
             }
         });
-        tabunganMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabunganLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                tabunganMenuMouseExited(evt);
+                tabunganLabelMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabunganMenuMousePressed(evt);
+                tabunganLabelMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tabunganMenuMouseReleased(evt);
+                tabunganLabelMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout tabunganPanelLayout = new javax.swing.GroupLayout(tabunganPanel);
-        tabunganPanel.setLayout(tabunganPanelLayout);
-        tabunganPanelLayout.setHorizontalGroup(
-            tabunganPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabunganPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout tabunganMenuLayout = new javax.swing.GroupLayout(tabunganMenu);
+        tabunganMenu.setLayout(tabunganMenuLayout);
+        tabunganMenuLayout.setHorizontalGroup(
+            tabunganMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabunganMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabunganMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(tabunganLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
-        tabunganPanelLayout.setVerticalGroup(
-            tabunganPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabunganMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        tabunganMenuLayout.setVerticalGroup(
+            tabunganMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabunganLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel6.add(tabunganPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, -1));
+        jPanel6.add(tabunganMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, -1));
 
-        debetPanel.setBackground(new java.awt.Color(32, 103, 178));
-        debetPanel.setPreferredSize(new java.awt.Dimension(200, 40));
+        debetMenu.setBackground(new java.awt.Color(32, 103, 178));
+        debetMenu.setPreferredSize(new java.awt.Dimension(200, 40));
 
-        debetMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        debetMenu.setForeground(new java.awt.Color(255, 255, 255));
-        debetMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/debeADMtMenu_30px.png"))); // NOI18N
-        debetMenu.setText("DEBET");
-        debetMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        debetMenu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        debetLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        debetLabel.setForeground(new java.awt.Color(255, 255, 255));
+        debetLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/debeADMtMenu_30px.png"))); // NOI18N
+        debetLabel.setText("DEBET");
+        debetLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        debetLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                debetMenuMouseMoved(evt);
+                debetLabelMouseMoved(evt);
             }
         });
-        debetMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        debetLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                debetMenuMouseExited(evt);
+                debetLabelMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                debetMenuMousePressed(evt);
+                debetLabelMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                debetMenuMouseReleased(evt);
+                debetLabelMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout debetPanelLayout = new javax.swing.GroupLayout(debetPanel);
-        debetPanel.setLayout(debetPanelLayout);
-        debetPanelLayout.setHorizontalGroup(
-            debetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(debetPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout debetMenuLayout = new javax.swing.GroupLayout(debetMenu);
+        debetMenu.setLayout(debetMenuLayout);
+        debetMenuLayout.setHorizontalGroup(
+            debetMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(debetMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(debetMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(debetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
-        debetPanelLayout.setVerticalGroup(
-            debetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(debetMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        debetMenuLayout.setVerticalGroup(
+            debetMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(debetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel6.add(debetPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, -1));
+        jPanel6.add(debetMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, -1));
 
-        logoutPanel.setBackground(new java.awt.Color(32, 103, 178));
-        logoutPanel.setPreferredSize(new java.awt.Dimension(200, 40));
+        logoutMenu.setBackground(new java.awt.Color(32, 103, 178));
+        logoutMenu.setPreferredSize(new java.awt.Dimension(200, 40));
 
-        logoutMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        logoutMenu.setForeground(new java.awt.Color(255, 255, 255));
-        logoutMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
-        logoutMenu.setText("LOG OUT");
-        logoutMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logoutMenu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        logoutLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        logoutLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
+        logoutLabel.setText("LOG OUT");
+        logoutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                logoutMenuMouseMoved(evt);
+                logoutLabelMouseMoved(evt);
             }
         });
-        logoutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutMenuMouseExited(evt);
+                logoutLabelMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                logoutMenuMousePressed(evt);
+                logoutLabelMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                logoutMenuMouseReleased(evt);
+                logoutLabelMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout logoutPanelLayout = new javax.swing.GroupLayout(logoutPanel);
-        logoutPanel.setLayout(logoutPanelLayout);
-        logoutPanelLayout.setHorizontalGroup(
-            logoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(logoutPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout logoutMenuLayout = new javax.swing.GroupLayout(logoutMenu);
+        logoutMenu.setLayout(logoutMenuLayout);
+        logoutMenuLayout.setHorizontalGroup(
+            logoutMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoutMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logoutMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(logoutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
-        logoutPanelLayout.setVerticalGroup(
-            logoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logoutMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        logoutMenuLayout.setVerticalGroup(
+            logoutMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logoutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel6.add(logoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
+        jPanel6.add(logoutMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
 
         sidebarPanel.add(jPanel6, java.awt.BorderLayout.CENTER);
 
@@ -362,39 +378,29 @@ public class customerServiceFrame extends javax.swing.JFrame {
 
         headerPanel.setPreferredSize(new java.awt.Dimension(547, 150));
 
-        judulLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        judulLabel.setText("Customer Service");
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Customer Service");
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addComponent(judulLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 161, Short.MAX_VALUE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
                 .addGap(0, 111, Short.MAX_VALUE)
-                .addComponent(judulLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         contentPanel.add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
         mainContentPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout mainContentPanelLayout = new javax.swing.GroupLayout(mainContentPanel);
-        mainContentPanel.setLayout(mainContentPanelLayout);
-        mainContentPanelLayout.setHorizontalGroup(
-            mainContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
-        );
-        mainContentPanelLayout.setVerticalGroup(
-            mainContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
-        );
-
+        mainContentPanel.setLayout(new java.awt.BorderLayout());
         contentPanel.add(mainContentPanel, java.awt.BorderLayout.CENTER);
 
         jPanel4.add(contentPanel, java.awt.BorderLayout.CENTER);
@@ -487,69 +493,73 @@ public class customerServiceFrame extends javax.swing.JFrame {
         closeBtn.setBackground(new Color(232, 17, 35));
     }//GEN-LAST:event_closeBtnMouseReleased
 
-    private void nasabahMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahMenuMouseExited
-        style.backgroundMouseExit(nasabahPanel);
-    }//GEN-LAST:event_nasabahMenuMouseExited
+    private void nasabahLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahLabelMouseExited
+        style.backgroundMouseExit(nasabahMenu);
+    }//GEN-LAST:event_nasabahLabelMouseExited
 
-    private void nasabahMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahMenuMouseMoved
-        style.backgroundMouseMoved(nasabahPanel);
-    }//GEN-LAST:event_nasabahMenuMouseMoved
+    private void nasabahLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahLabelMouseMoved
+        style.backgroundMouseMoved(nasabahMenu);
+    }//GEN-LAST:event_nasabahLabelMouseMoved
 
-    private void nasabahMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahMenuMousePressed
-        style.backgroundMousePressed(nasabahPanel);
-    }//GEN-LAST:event_nasabahMenuMousePressed
+    private void nasabahLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahLabelMousePressed
+        style.backgroundMousePressed(nasabahMenu);
+    }//GEN-LAST:event_nasabahLabelMousePressed
 
-    private void nasabahMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahMenuMouseReleased
-        style.backgroundMouseReleased(nasabahPanel);
-    }//GEN-LAST:event_nasabahMenuMouseReleased
+    private void nasabahLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahLabelMouseReleased
+        style.backgroundMouseReleased(nasabahMenu);
+    }//GEN-LAST:event_nasabahLabelMouseReleased
 
-    private void tabunganMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganMenuMouseExited
-        style.backgroundMouseExit(tabunganPanel);
-    }//GEN-LAST:event_tabunganMenuMouseExited
+    private void tabunganLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganLabelMouseExited
+        style.backgroundMouseExit(tabunganMenu);
+    }//GEN-LAST:event_tabunganLabelMouseExited
 
-    private void tabunganMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganMenuMouseMoved
-        style.backgroundMouseMoved(tabunganPanel);
-    }//GEN-LAST:event_tabunganMenuMouseMoved
+    private void tabunganLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganLabelMouseMoved
+        style.backgroundMouseMoved(tabunganMenu);
+    }//GEN-LAST:event_tabunganLabelMouseMoved
 
-    private void tabunganMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganMenuMousePressed
-        style.backgroundMousePressed(tabunganPanel);
-    }//GEN-LAST:event_tabunganMenuMousePressed
+    private void tabunganLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganLabelMousePressed
+        style.backgroundMousePressed(tabunganMenu);
+    }//GEN-LAST:event_tabunganLabelMousePressed
 
-    private void tabunganMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganMenuMouseReleased
-        style.backgroundMouseReleased(tabunganPanel);
-    }//GEN-LAST:event_tabunganMenuMouseReleased
+    private void tabunganLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabunganLabelMouseReleased
+        style.backgroundMouseReleased(tabunganMenu);
+    }//GEN-LAST:event_tabunganLabelMouseReleased
 
-    private void debetMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetMenuMouseExited
-        style.backgroundMouseExit(debetPanel);
-    }//GEN-LAST:event_debetMenuMouseExited
+    private void debetLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseExited
+        style.backgroundMouseExit(debetMenu);
+    }//GEN-LAST:event_debetLabelMouseExited
 
-    private void debetMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetMenuMouseMoved
-        style.backgroundMouseMoved(debetPanel);
-    }//GEN-LAST:event_debetMenuMouseMoved
+    private void debetLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseMoved
+        style.backgroundMouseMoved(debetMenu);
+    }//GEN-LAST:event_debetLabelMouseMoved
 
-    private void debetMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetMenuMousePressed
-        style.backgroundMousePressed(debetPanel);
-    }//GEN-LAST:event_debetMenuMousePressed
+    private void debetLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMousePressed
+        style.backgroundMousePressed(debetMenu);
+    }//GEN-LAST:event_debetLabelMousePressed
 
-    private void debetMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetMenuMouseReleased
-        style.backgroundMouseReleased(debetPanel);
-    }//GEN-LAST:event_debetMenuMouseReleased
+    private void debetLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseReleased
+        style.backgroundMouseReleased(debetMenu);
+    }//GEN-LAST:event_debetLabelMouseReleased
 
-    private void logoutMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseExited
-        style.backgroundMouseExit(logoutPanel);
-    }//GEN-LAST:event_logoutMenuMouseExited
+    private void logoutLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseExited
+        style.backgroundMouseExit(logoutMenu);
+    }//GEN-LAST:event_logoutLabelMouseExited
 
-    private void logoutMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseMoved
-        style.backgroundMouseMoved(logoutPanel);
-    }//GEN-LAST:event_logoutMenuMouseMoved
+    private void logoutLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseMoved
+        style.backgroundMouseMoved(logoutMenu);
+    }//GEN-LAST:event_logoutLabelMouseMoved
 
-    private void logoutMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMousePressed
-        style.backgroundMousePressed(logoutPanel);
-    }//GEN-LAST:event_logoutMenuMousePressed
+    private void logoutLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMousePressed
+        style.backgroundMousePressed(logoutMenu);
+    }//GEN-LAST:event_logoutLabelMousePressed
 
-    private void logoutMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseReleased
-        style.backgroundMouseReleased(logoutPanel);
-    }//GEN-LAST:event_logoutMenuMouseReleased
+    private void logoutLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseReleased
+        style.backgroundMouseReleased(logoutMenu);
+    }//GEN-LAST:event_logoutLabelMouseReleased
+
+    private void nasabahLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahLabelMouseClicked
+        showPanel(nasabah, "DATA NASABAH");
+    }//GEN-LAST:event_nasabahLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -590,8 +600,8 @@ public class customerServiceFrame extends javax.swing.JFrame {
     private javax.swing.JPanel barPanel;
     private javax.swing.JLabel closeBtn;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel debetMenu;
-    private javax.swing.JPanel debetPanel;
+    private javax.swing.JLabel debetLabel;
+    private javax.swing.JPanel debetMenu;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -601,16 +611,16 @@ public class customerServiceFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel judulLabel;
-    private javax.swing.JLabel logoutMenu;
-    private javax.swing.JPanel logoutPanel;
+    private javax.swing.JLabel logoutLabel;
+    private javax.swing.JPanel logoutMenu;
     private javax.swing.JPanel mainContentPanel;
     private javax.swing.JLabel maximizeBtn;
     private javax.swing.JLabel minimizeBtn;
-    private javax.swing.JLabel nasabahMenu;
-    private javax.swing.JPanel nasabahPanel;
+    private javax.swing.JLabel nasabahLabel;
+    private javax.swing.JPanel nasabahMenu;
     private javax.swing.JPanel sidebarPanel;
-    private javax.swing.JLabel tabunganMenu;
-    private javax.swing.JPanel tabunganPanel;
+    private javax.swing.JLabel tabunganLabel;
+    private javax.swing.JPanel tabunganMenu;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
