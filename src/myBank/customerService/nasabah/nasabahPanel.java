@@ -32,7 +32,7 @@ public class nasabahPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         cariTextField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        cariBtn = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         baruBtn = new javax.swing.JLabel();
@@ -58,12 +58,12 @@ public class nasabahPanel extends javax.swing.JPanel {
         cariTextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         cariTextField.setPreferredSize(new java.awt.Dimension(59, 40));
 
-        jLabel4.setBackground(new java.awt.Color(35, 171, 226));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/cari_30px.png"))); // NOI18N
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.setOpaque(true);
-        jLabel4.setPreferredSize(new java.awt.Dimension(40, 40));
+        cariBtn.setBackground(new java.awt.Color(35, 171, 226));
+        cariBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cariBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/cari_30px.png"))); // NOI18N
+        cariBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cariBtn.setOpaque(true);
+        cariBtn.setPreferredSize(new java.awt.Dimension(40, 40));
 
         jComboBox1.setBackground(new java.awt.Color(35, 171, 226));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -79,7 +79,7 @@ public class nasabahPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(cariTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cariBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -87,7 +87,7 @@ public class nasabahPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cariBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(cariTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addContainerGap())
@@ -106,6 +106,11 @@ public class nasabahPanel extends javax.swing.JPanel {
         baruBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         baruBtn.setOpaque(true);
         baruBtn.setPreferredSize(new java.awt.Dimension(83, 40));
+        baruBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                baruBtnMouseClicked(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(35, 171, 226));
         editBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -360,15 +365,20 @@ public class nasabahPanel extends javax.swing.JPanel {
         style.backgroundMouseReleased(lastBtn);
     }//GEN-LAST:event_lastBtnMouseReleased
 
+    private void baruBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseClicked
+        new nasabahNew(null, true).show();        
+
+    }//GEN-LAST:event_baruBtnMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel baruBtn;
+    private javax.swing.JLabel cariBtn;
     private javax.swing.JTextField cariTextField;
     private javax.swing.JLabel editBtn;
     private javax.swing.JLabel firstBtn;
     private javax.swing.JLabel hapusBtn;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

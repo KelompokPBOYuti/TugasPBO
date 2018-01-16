@@ -40,7 +40,7 @@
                   <EmptySpace pref="225" max="32767" attributes="0"/>
                   <Component id="cariTextField" min="-2" pref="208" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="cariBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -50,7 +50,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel4" pref="0" max="32767" attributes="0"/>
+                      <Component id="cariBtn" pref="0" max="32767" attributes="0"/>
                       <Component id="cariTextField" pref="0" max="32767" attributes="0"/>
                       <Component id="jComboBox1" pref="38" max="32767" attributes="0"/>
                   </Group>
@@ -83,7 +83,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="cariBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e2" green="ab" red="23" type="rgb"/>
@@ -205,6 +205,9 @@
               <Dimension value="[83, 40]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="baruBtnMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="editBtn">
           <Properties>
