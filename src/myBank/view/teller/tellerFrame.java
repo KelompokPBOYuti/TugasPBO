@@ -14,7 +14,7 @@ import myBank.style.buttonStyle;
  *
  * @author Fauzi
  */
-public class telleFrame extends javax.swing.JFrame {
+public class tellerFrame extends javax.swing.JFrame {
     buttonStyle style = new buttonStyle();
     kreditPanel kredit = new kreditPanel();
     debetPanel debet = new debetPanel();
@@ -25,7 +25,7 @@ public class telleFrame extends javax.swing.JFrame {
     /**
      * Creates new form telleFrame
      */
-    public telleFrame() {
+    public tellerFrame() {
         initComponents();
         showPanel(laporan, "LAPORAN TRANSAKSI");
         resetBorderAktif();
@@ -482,7 +482,7 @@ public class telleFrame extends javax.swing.JFrame {
         jPanel5.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
-        contentPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contentPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         contentPanel.setLayout(new java.awt.BorderLayout());
         jPanel5.add(contentPanel, java.awt.BorderLayout.CENTER);
 
@@ -698,20 +698,20 @@ public class telleFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tellerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tellerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tellerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tellerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telleFrame().setVisible(true);
+                new tellerFrame().setVisible(true);
             }
         });
     }
