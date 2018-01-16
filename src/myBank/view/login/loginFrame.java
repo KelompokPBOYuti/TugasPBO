@@ -112,7 +112,7 @@ public class loginFrame extends javax.swing.JFrame {
 
         fullOrNormalSSBtn.setBackground(new java.awt.Color(32, 103, 178));
         fullOrNormalSSBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fullOrNormalSSBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/full_screen_20px.png"))); // NOI18N
+        fullOrNormalSSBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/normal_screen_20px.png"))); // NOI18N
         fullOrNormalSSBtn.setOpaque(true);
         fullOrNormalSSBtn.setPreferredSize(new java.awt.Dimension(30, 30));
         fullOrNormalSSBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
