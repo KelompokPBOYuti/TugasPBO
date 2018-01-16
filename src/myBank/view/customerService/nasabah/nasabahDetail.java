@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package myBank.customerService.nasabah;
+package myBank.view.customerService.nasabah;
 
 /**
  *

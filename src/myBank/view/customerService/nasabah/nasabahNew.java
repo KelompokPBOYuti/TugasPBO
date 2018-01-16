@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package myBank.customerService.nasabah;
+package myBank.view.customerService.nasabah;
 
 /**
  *
@@ -66,7 +66,6 @@ public class nasabahNew extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(850, 600));
-        setPreferredSize(new java.awt.Dimension(850, 650));
 
         jPanel1.setBackground(new java.awt.Color(32, 103, 178));
         jPanel1.setLayout(new java.awt.BorderLayout());

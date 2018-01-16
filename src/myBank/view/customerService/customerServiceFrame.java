@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package myBank.customerService;
+package myBank.view.customerService;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-import myBank.customerService.nasabah.nasabahPanel;
+import myBank.view.customerService.nasabah.nasabahPanel;
 import myBank.style.buttonStyle;
 
 /**
@@ -72,7 +72,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 550));
 
         barPanel.setBackground(new java.awt.Color(32, 103, 178));
         barPanel.setPreferredSize(new java.awt.Dimension(752, 30));
