@@ -8,12 +8,14 @@ package myBank.view.teller;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import myBank.style.buttonStyle;
 
 /**
  *
  * @author Fauzi
  */
 public class telleFrame extends javax.swing.JFrame {
+    buttonStyle style = new buttonStyle();
     kreditPanel kredit = new kreditPanel();
     debetPanel debet = new debetPanel();
     transferPanel transfer = new transferPanel();
@@ -58,6 +60,9 @@ public class telleFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -89,15 +94,89 @@ public class telleFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(32, 103, 178));
         jPanel1.setPreferredSize(new java.awt.Dimension(850, 30));
 
+        jLabel1.setBackground(new java.awt.Color(32, 103, 178));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/close_screen_20px.png"))); // NOI18N
+        jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(30, 30));
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel1MouseMoved(evt);
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel1MouseReleased(evt);
+            }
+        });
+
+        jLabel2.setBackground(new java.awt.Color(32, 103, 178));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/normal_screen_20px.png"))); // NOI18N
+        jLabel2.setOpaque(true);
+        jLabel2.setPreferredSize(new java.awt.Dimension(30, 30));
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel2MouseMoved(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel2MouseReleased(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(32, 103, 178));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/minimize_Screen_20px.png"))); // NOI18N
+        jLabel3.setOpaque(true);
+        jLabel3.setPreferredSize(new java.awt.Dimension(30, 30));
+        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel3MouseMoved(evt);
+            }
+        });
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel3MouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 748, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -451,83 +530,83 @@ public class telleFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kreditLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kreditLabelMouseMoved
-        menuKredit.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseMoved(menuKredit);
     }//GEN-LAST:event_kreditLabelMouseMoved
 
     private void debetLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseMoved
-        menuDebet.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseMoved(menuDebet);
     }//GEN-LAST:event_debetLabelMouseMoved
 
     private void transferLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferLabelMouseMoved
-        menuTransfer.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseMoved(menuTransfer);
     }//GEN-LAST:event_transferLabelMouseMoved
 
     private void laporanLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanLabelMouseMoved
-        menuLaporan.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseMoved(menuLaporan);
     }//GEN-LAST:event_laporanLabelMouseMoved
 
     private void logOutLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutLabelMouseMoved
-        menuLogout.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseMoved(menuLogout);
     }//GEN-LAST:event_logOutLabelMouseMoved
 
     private void kreditLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kreditLabelMouseExited
-        menuKredit.setBackground(new Color(32, 103, 178));
+        style.backgroundMouseExit(menuKredit);
     }//GEN-LAST:event_kreditLabelMouseExited
 
     private void debetLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseExited
-        menuDebet.setBackground(new Color(32, 103, 178));
+        style.backgroundMouseExit(menuDebet);
     }//GEN-LAST:event_debetLabelMouseExited
 
     private void transferLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferLabelMouseExited
-        menuTransfer.setBackground(new Color(32, 103, 178));
+        style.backgroundMouseExit(menuTransfer);
     }//GEN-LAST:event_transferLabelMouseExited
 
     private void laporanLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanLabelMouseExited
-        menuLaporan.setBackground(new Color(32, 103, 178));
+        style.backgroundMouseExit(menuLaporan);
     }//GEN-LAST:event_laporanLabelMouseExited
 
     private void logOutLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutLabelMouseExited
-        menuLogout.setBackground(new Color(32, 103, 178));
+        style.backgroundMouseExit(menuLogout);
     }//GEN-LAST:event_logOutLabelMouseExited
 
     private void kreditLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kreditLabelMousePressed
-        menuKredit.setBackground(new Color(255, 255, 255));
+        style.backgroundMousePressed(menuKredit);
     }//GEN-LAST:event_kreditLabelMousePressed
 
     private void debetLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMousePressed
-        menuDebet.setBackground(new Color(255, 255, 255));
+        style.backgroundMousePressed(menuDebet);
     }//GEN-LAST:event_debetLabelMousePressed
 
     private void transferLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferLabelMousePressed
-        menuTransfer.setBackground(new Color(255, 255, 255));
+        style.backgroundMousePressed(menuTransfer);
     }//GEN-LAST:event_transferLabelMousePressed
 
     private void laporanLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanLabelMousePressed
-        menuLaporan.setBackground(new Color(255, 255, 255));
+        style.backgroundMousePressed(menuLaporan);
     }//GEN-LAST:event_laporanLabelMousePressed
 
     private void logOutLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutLabelMousePressed
-        menuLogout.setBackground(new Color(255, 255, 255));
+        style.backgroundMousePressed(menuLogout);
     }//GEN-LAST:event_logOutLabelMousePressed
 
     private void kreditLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kreditLabelMouseReleased
-        menuKredit.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseReleased(menuKredit);
     }//GEN-LAST:event_kreditLabelMouseReleased
 
     private void debetLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseReleased
-        menuDebet.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseReleased(menuDebet);
     }//GEN-LAST:event_debetLabelMouseReleased
 
     private void transferLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferLabelMouseReleased
-        menuTransfer.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseReleased(menuTransfer);
     }//GEN-LAST:event_transferLabelMouseReleased
 
     private void laporanLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanLabelMouseReleased
-        menuLaporan.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseReleased(menuLaporan);
     }//GEN-LAST:event_laporanLabelMouseReleased
 
     private void logOutLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutLabelMouseReleased
-        menuLogout.setBackground(new Color(35, 171, 226));
+        style.backgroundMouseReleased(menuLogout);
     }//GEN-LAST:event_logOutLabelMouseReleased
 
     private void kreditLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kreditLabelMouseClicked
@@ -553,6 +632,54 @@ public class telleFrame extends javax.swing.JFrame {
         resetBorderAktif();
         menuLaporan.setBorder(borderAktif);
     }//GEN-LAST:event_laporanLabelMouseClicked
+
+    private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved
+        jLabel1.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_jLabel1MouseMoved
+
+    private void jLabel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseMoved
+        jLabel2.setBackground(new Color(35, 171, 226));
+    }//GEN-LAST:event_jLabel2MouseMoved
+
+    private void jLabel3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseMoved
+        jLabel3.setBackground(new Color(35, 171, 226));
+    }//GEN-LAST:event_jLabel3MouseMoved
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        jLabel1.setBackground(new Color(32, 103, 178));
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        jLabel2.setBackground(new Color(32, 103, 178));
+    }//GEN-LAST:event_jLabel2MouseExited
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setBackground(new Color(32, 103, 178));
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        jLabel1.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        jLabel2.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        jLabel3.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jLabel3MousePressed
+
+    private void jLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseReleased
+        jLabel1.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_jLabel1MouseReleased
+
+    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
+        jLabel2.setBackground(new Color(35, 171, 226));
+    }//GEN-LAST:event_jLabel2MouseReleased
+
+    private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
+        jLabel3.setBackground(new Color(35, 171, 226));
+    }//GEN-LAST:event_jLabel3MouseReleased
 
     /**
      * @param args the command line arguments
@@ -592,6 +719,9 @@ public class telleFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel debetLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
