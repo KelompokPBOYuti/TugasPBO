@@ -118,6 +118,12 @@ public class nasabahPanel extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 baruBtnMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                baruBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                baruBtnMouseReleased(evt);
+            }
         });
 
         editBtn.setBackground(new java.awt.Color(35, 171, 226));
@@ -128,6 +134,22 @@ public class nasabahPanel extends javax.swing.JPanel {
         editBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editBtn.setOpaque(true);
         editBtn.setPreferredSize(new java.awt.Dimension(83, 40));
+        editBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                editBtnMouseMoved(evt);
+            }
+        });
+        editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                editBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                editBtnMouseReleased(evt);
+            }
+        });
 
         hapusBtn.setBackground(new java.awt.Color(35, 171, 226));
         hapusBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -137,6 +159,22 @@ public class nasabahPanel extends javax.swing.JPanel {
         hapusBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hapusBtn.setOpaque(true);
         hapusBtn.setPreferredSize(new java.awt.Dimension(83, 40));
+        hapusBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseMoved(evt);
+            }
+        });
+        hapusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hapusBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseReleased(evt);
+            }
+        });
 
         firstBtn.setBackground(new java.awt.Color(35, 171, 226));
         firstBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -263,13 +301,11 @@ public class nasabahPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(prevBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(firstBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lastBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prevBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hapusBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(editBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(baruBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -386,6 +422,46 @@ public class nasabahPanel extends javax.swing.JPanel {
     private void baruBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseMoved
         style.borderMouseMoved(baruBtn);
     }//GEN-LAST:event_baruBtnMouseMoved
+
+    private void baruBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMousePressed
+        style.backgroundMousePressed(baruBtn);
+    }//GEN-LAST:event_baruBtnMousePressed
+
+    private void baruBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseReleased
+        style.backgroundMouseReleased(baruBtn);
+    }//GEN-LAST:event_baruBtnMouseReleased
+
+    private void editBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseExited
+        style.borderMouseExit(editBtn);
+    }//GEN-LAST:event_editBtnMouseExited
+
+    private void editBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseMoved
+        style.borderMouseMoved(editBtn);
+    }//GEN-LAST:event_editBtnMouseMoved
+
+    private void editBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMousePressed
+        style.backgroundMousePressed(editBtn);
+    }//GEN-LAST:event_editBtnMousePressed
+
+    private void editBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseReleased
+        style.backgroundMouseReleased(editBtn);
+    }//GEN-LAST:event_editBtnMouseReleased
+
+    private void hapusBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseExited
+        style.borderMouseExit(hapusBtn);
+    }//GEN-LAST:event_hapusBtnMouseExited
+
+    private void hapusBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseMoved
+        style.borderMouseMoved(hapusBtn);
+    }//GEN-LAST:event_hapusBtnMouseMoved
+
+    private void hapusBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMousePressed
+        style.backgroundMousePressed(hapusBtn);
+    }//GEN-LAST:event_hapusBtnMousePressed
+
+    private void hapusBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseReleased
+        style.backgroundMouseReleased(hapusBtn);
+    }//GEN-LAST:event_hapusBtnMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
