@@ -5,15 +5,21 @@
  */
 package myBank.view.customerService.nasabah;
 
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import com.toedter.calendar.JDateChooser;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import java.text.SimpleDateFormat;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import myBank.controller.nasabahController;
+import myBank.style.buttonStyle;
 import myBank.style.photoStyle;
 
 /**
@@ -22,17 +28,74 @@ import myBank.style.photoStyle;
  */
 public class nasabahNew extends javax.swing.JDialog {
 
+    nasabahController nasabahCtrl = new nasabahController();
+    ButtonGroup radioGroup = new ButtonGroup();
+    buttonStyle btnStyle = new buttonStyle();
     photoStyle photo = new photoStyle();
+    String pathPhoto;
+    String tanggalLahir;
 
     /**
      * Creates new form nasabahNew
+     *
+     * @param parent
+     * @param modal
      */
     public nasabahNew(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        tanggalLahirDate.setDateFormatString("yyyy-MM-dd");
+        radioGroup.add(jKLakiRB);
+        radioGroup.add(jkPerempuanRB);
         this.setLocationRelativeTo(null);
+        validasiPesanLabel.setVisible(false);
         slinde1Panel.setVisible(true);
         slide2Panel.setVisible(true);
+    }
+
+    public void setValidasi(String pesan, boolean stts) {
+        validasiPesanLabel.setText("<html>"+pesan+"</html>");
+        validasiPesanLabel.setVisible(stts);
+    }
+
+    public JTextField getNoKTP() {
+        return noKTPTextField;
+    }
+
+    public JTextField getNama() {
+        return namaTextField;
+    }
+
+    public JRadioButton getJkLaki() {
+        return jKLakiRB;
+    }
+
+    public JRadioButton getJkPerempuan() {
+        return jkPerempuanRB;
+    }
+
+    public JTextField getTempatLahir() {
+        return tempatLahirTextField;
+    }
+
+    public String getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public JTextField getNoTlp() {
+        return noTlpTextField;
+    }
+
+    public JTextArea getAlamat() {
+        return alamatTextArea;
+    }
+
+    public JTextField getSaldo() {
+        return saldoTextField;
+    }
+
+    public String getPathPhoto() {
+        return pathPhoto;
     }
 
     /**
@@ -46,6 +109,8 @@ public class nasabahNew extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        closeBtn = new javax.swing.JLabel();
+        minimizeBtn = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         slinde1Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,20 +120,21 @@ public class nasabahNew extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        noKTPTextField = new javax.swing.JTextField();
+        namaTextField = new javax.swing.JTextField();
+        jKLakiRB = new javax.swing.JRadioButton();
+        jkPerempuanRB = new javax.swing.JRadioButton();
+        tempatLahirTextField = new javax.swing.JTextField();
+        noTlpTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        alamatTextArea = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        saldoTextField = new javax.swing.JTextField();
         potoLabel = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        potoBtn = new javax.swing.JLabel();
+        simpanBtn = new javax.swing.JLabel();
+        validasiPesanLabel = new javax.swing.JLabel();
+        tanggalLahirDate = new com.toedter.calendar.JDateChooser();
         slide2Panel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -100,15 +166,30 @@ public class nasabahNew extends javax.swing.JDialog {
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(719, 30));
 
+        closeBtn.setBackground(new java.awt.Color(32, 103, 178));
+        closeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/close_screen_20px.png"))); // NOI18N
+        closeBtn.setOpaque(true);
+
+        minimizeBtn.setBackground(new java.awt.Color(32, 103, 178));
+        minimizeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        minimizeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/minimize_Screen_20px.png"))); // NOI18N
+        minimizeBtn.setOpaque(true);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 674, Short.MAX_VALUE)
+                .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+            .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(minimizeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
@@ -147,74 +228,117 @@ public class nasabahNew extends javax.swing.JDialog {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Jenis Kelamin");
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        noKTPTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        noKTPTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        namaTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namaTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Laki - laki");
-        jRadioButton1.setOpaque(false);
+        jKLakiRB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jKLakiRB.setForeground(new java.awt.Color(255, 255, 255));
+        jKLakiRB.setSelected(true);
+        jKLakiRB.setText("Laki - laki");
+        jKLakiRB.setOpaque(false);
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Perempuan");
-        jRadioButton2.setOpaque(false);
+        jkPerempuanRB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jkPerempuanRB.setForeground(new java.awt.Color(255, 255, 255));
+        jkPerempuanRB.setText("Perempuan");
+        jkPerempuanRB.setOpaque(false);
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        tempatLahirTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tempatLahirTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        noTlpTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        noTlpTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        jTextArea1.setOpaque(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        alamatTextArea.setColumns(20);
+        alamatTextArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alamatTextArea.setLineWrap(true);
+        alamatTextArea.setRows(5);
+        alamatTextArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        alamatTextArea.setOpaque(false);
+        jScrollPane1.setViewportView(alamatTextArea);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Saldo awal (Rp)");
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        saldoTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saldoTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
+        potoLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        potoLabel.setForeground(new java.awt.Color(255, 255, 255));
         potoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         potoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/user_100px.png"))); // NOI18N
+        potoLabel.setText("2 X 3");
         potoLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        potoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        potoLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel11.setBackground(new java.awt.Color(35, 171, 226));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/cari_30px.png"))); // NOI18N
-        jLabel11.setOpaque(true);
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        potoBtn.setBackground(new java.awt.Color(35, 171, 226));
+        potoBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        potoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/cari_30px.png"))); // NOI18N
+        potoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        potoBtn.setOpaque(true);
+        potoBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                potoBtnMouseMoved(evt);
+            }
+        });
+        potoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                potoBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                potoBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                potoBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                potoBtnMouseReleased(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(35, 171, 226));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
-        jLabel1.setOpaque(true);
-        jLabel1.setPreferredSize(new java.awt.Dimension(34, 40));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        simpanBtn.setBackground(new java.awt.Color(35, 171, 226));
+        simpanBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        simpanBtn.setForeground(new java.awt.Color(255, 255, 255));
+        simpanBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        simpanBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/Save_30px.png"))); // NOI18N
+        simpanBtn.setText("SIMPAN");
+        simpanBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        simpanBtn.setOpaque(true);
+        simpanBtn.setPreferredSize(new java.awt.Dimension(34, 40));
+        simpanBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseMoved(evt);
+            }
+        });
+        simpanBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                simpanBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                simpanBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseReleased(evt);
             }
         });
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        jDateChooser1.setDateFormatString("yyyy-MM-dd\n");
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        validasiPesanLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        validasiPesanLabel.setForeground(new java.awt.Color(255, 255, 255));
+        validasiPesanLabel.setText("*Pesan Validasi");
+        validasiPesanLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)), "Catatan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        tanggalLahirDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tanggalLahirDatePropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout slinde1PanelLayout = new javax.swing.GroupLayout(slinde1Panel);
         slinde1Panel.setLayout(slinde1PanelLayout);
@@ -224,39 +348,43 @@ public class nasabahNew extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slinde1PanelLayout.createSequentialGroup()
-                        .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                .addComponent(jTextField8)
-                                .addGap(220, 220, 220)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jRadioButton2))
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
-                                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(potoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(saldoTextField)
+                        .addGap(220, 220, 220)
+                        .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addContainerGap(622, Short.MAX_VALUE))
+                    .addGroup(slinde1PanelLayout.createSequentialGroup()
+                        .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tanggalLahirDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, slinde1PanelLayout.createSequentialGroup()
+                                .addComponent(jKLakiRB)
+                                .addGap(28, 28, 28)
+                                .addComponent(jkPerempuanRB))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noKTPTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namaTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addComponent(tempatLahirTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addComponent(noTlpTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(slinde1PanelLayout.createSequentialGroup()
+                                .addGap(18, 189, Short.MAX_VALUE)
+                                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(potoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(potoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39))
+                            .addGroup(slinde1PanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(validasiPesanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         slinde1PanelLayout.setVerticalGroup(
             slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,45 +394,48 @@ public class nasabahNew extends javax.swing.JDialog {
                 .addGap(2, 2, 2)
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(noKTPTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(namaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(jKLakiRB)
+                            .addComponent(jkPerempuanRB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5))
                     .addComponent(potoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tempatLahirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                        .addComponent(tanggalLahirDate, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addGap(0, 0, 0)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(noTlpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7))
+                    .addGroup(slinde1PanelLayout.createSequentialGroup()
+                        .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(slinde1PanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addGap(2, 2, 2))
-                    .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel10))
+                    .addComponent(validasiPesanLabel))
+                .addGap(2, 2, 2)
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saldoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -480,12 +611,11 @@ public class nasabahNew extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        slinde1Panel.setVisible(true);
-        slide2Panel.setVisible(false);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void simpanBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseClicked
+        nasabahCtrl.addNasabah(this);
+    }//GEN-LAST:event_simpanBtnMouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void potoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseClicked
         JFileChooser jfc = new JFileChooser();
         FileFilter jpgFilter, gifFilter, bothFilter;
         jpgFilter = new FileNameExtensionFilter("Gambar JPEG", "jpg");
@@ -495,18 +625,60 @@ public class nasabahNew extends javax.swing.JDialog {
         jfc.addChoosableFileFilter(bothFilter);
         jfc.addChoosableFileFilter(jpgFilter);
         jfc.addChoosableFileFilter(gifFilter);
-        if (jfc.showOpenDialog(this) == jfc.APPROVE_OPTION) {
-            String f = jfc.getSelectedFile().toString();
-            f = f.replace("\\", "/");
-            BufferedImage loadImg = photo.loadImage(f);
-            ImageIcon imageIcon = new ImageIcon(photo.resize(loadImg, potoLabel.getWidth()- 1, potoLabel.getHeight() - 1));
-            potoLabel.setIcon(imageIcon);
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            pathPhoto = jfc.getSelectedFile().toString();
+            if (!"".equals(pathPhoto)) {
+                pathPhoto = pathPhoto.replace("\\", "/");
+                BufferedImage loadImg = photo.loadImage(pathPhoto);
+                ImageIcon imageIcon = new ImageIcon(photo.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
+                potoLabel.setText("");
+                potoLabel.setIcon(imageIcon);
+            }
         }
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_potoBtnMouseClicked
+
+    private void simpanBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseExited
+        btnStyle.borderMouseExit(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseExited
+
+    private void simpanBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseMoved
+        btnStyle.borderMouseMoved(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseMoved
+
+    private void simpanBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMousePressed
+        btnStyle.backgroundMousePressed(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMousePressed
+
+    private void simpanBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseReleased
+        btnStyle.backgroundMouseReleased(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseReleased
+
+    private void potoBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseExited
+        btnStyle.borderMouseExit(potoBtn);
+    }//GEN-LAST:event_potoBtnMouseExited
+
+    private void potoBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseMoved
+        btnStyle.borderMouseMoved(potoBtn);
+    }//GEN-LAST:event_potoBtnMouseMoved
+
+    private void potoBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMousePressed
+        btnStyle.backgroundMousePressed(potoBtn);
+    }//GEN-LAST:event_potoBtnMousePressed
+
+    private void potoBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseReleased
+        btnStyle.backgroundMouseReleased(potoBtn);
+    }//GEN-LAST:event_potoBtnMouseReleased
+
+    private void tanggalLahirDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalLahirDatePropertyChange
+        if (tanggalLahirDate.getDate() != null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tanggalLahir = simpleDateFormat.format(tanggalLahirDate.getDate());
+        }        
+    }//GEN-LAST:event_tanggalLahirDatePropertyChange
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -547,10 +719,10 @@ public class nasabahNew extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea alamatTextArea;
+    private javax.swing.JLabel closeBtn;
+    private javax.swing.JRadioButton jKLakiRB;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -577,19 +749,26 @@ public class nasabahNew extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JRadioButton jkPerempuanRB;
+    private javax.swing.JLabel minimizeBtn;
+    private javax.swing.JTextField namaTextField;
+    private javax.swing.JTextField noKTPTextField;
+    private javax.swing.JTextField noTlpTextField;
+    private javax.swing.JLabel potoBtn;
     private javax.swing.JLabel potoLabel;
+    private javax.swing.JTextField saldoTextField;
+    private javax.swing.JLabel simpanBtn;
     private javax.swing.JPanel slide2Panel;
     private javax.swing.JPanel slinde1Panel;
+    private com.toedter.calendar.JDateChooser tanggalLahirDate;
+    private javax.swing.JTextField tempatLahirTextField;
+    private javax.swing.JLabel validasiPesanLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void If(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
