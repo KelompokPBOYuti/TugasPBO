@@ -14,12 +14,15 @@ import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import myBank.style.photoStyle;
 
 /**
  *
  * @author Fauzi
  */
 public class nasabahNew extends javax.swing.JDialog {
+
+    photoStyle photo = new photoStyle();
 
     /**
      * Creates new form nasabahNew
@@ -30,29 +33,6 @@ public class nasabahNew extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         slinde1Panel.setVisible(true);
         slide2Panel.setVisible(true);
-    }
-
-    public static BufferedImage loadImage(String ref) {
-        BufferedImage bimg = null;
-        try {
-            bimg = ImageIO.read(new File(ref));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bimg;
-    }
-
-    public static BufferedImage resize(BufferedImage img, int newW, int newH) {
-        int w = img.getWidth();
-        int h = img.getHeight();
-        BufferedImage dimg = dimg = new BufferedImage(newW, newH, img.getType());
-        Graphics2D g = dimg.createGraphics();
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);
-        g.dispose();
-        return dimg;
-
     }
 
     /**
@@ -310,6 +290,7 @@ public class nasabahNew extends javax.swing.JDialog {
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
+                        .addGap(0, 0, 0)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
@@ -505,21 +486,20 @@ public class nasabahNew extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-
         JFileChooser jfc = new JFileChooser();
         FileFilter jpgFilter, gifFilter, bothFilter;
         jpgFilter = new FileNameExtensionFilter("Gambar JPEG", "jpg");
         gifFilter = new FileNameExtensionFilter("Gambar GIF", "png");
         bothFilter = new FileNameExtensionFilter("Gambar JPEG dan GIF", "jpg", "png");
         jfc.setAcceptAllFileFilterUsed(false);
+        jfc.addChoosableFileFilter(bothFilter);
         jfc.addChoosableFileFilter(jpgFilter);
         jfc.addChoosableFileFilter(gifFilter);
-        jfc.addChoosableFileFilter(bothFilter);
         if (jfc.showOpenDialog(this) == jfc.APPROVE_OPTION) {
             String f = jfc.getSelectedFile().toString();
             f = f.replace("\\", "/");
-            BufferedImage loadImg = loadImage(f);
-            ImageIcon imageIcon = new ImageIcon(resize(loadImg,potoLabel.getWidth(), potoLabel.getHeight()));
+            BufferedImage loadImg = photo.loadImage(f);
+            ImageIcon imageIcon = new ImageIcon(photo.resize(loadImg, potoLabel.getWidth()- 1, potoLabel.getHeight() - 1));
             potoLabel.setIcon(imageIcon);
         }
     }//GEN-LAST:event_jLabel11MouseClicked
