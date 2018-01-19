@@ -10,6 +10,7 @@ import myBank.view.teller.transfer.transferPanel;
 import myBank.view.teller.debet.debetPanel;
 import myBank.view.teller.kredit.kreditPanel;
 import java.awt.Color;
+import java.awt.HeadlessException;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import myBank.style.buttonStyle;
@@ -19,13 +20,32 @@ import myBank.style.buttonStyle;
  * @author Fauzi
  */
 public class tellerFrame extends javax.swing.JFrame {
+
     buttonStyle style = new buttonStyle();
     kreditPanel kredit = new kreditPanel();
     debetPanel debet = new debetPanel();
     transferPanel transfer = new transferPanel();
     laporanTransaksiPanel laporan = new laporanTransaksiPanel();
     Border borderAktif = javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 255, 255));
+    String idUser;
+    String nama;
+    String photo;
+
     
+
+    
+    public tellerFrame(String idUser, String nama, String photo) {
+        initComponents();        
+        this.idUser = idUser;
+        this.nama = nama;
+        this.photo = photo;
+        showPanel(laporan, "LAPORAN TRANSAKSI");
+        resetBorderAktif();
+        menuLaporan.setBorder(borderAktif);
+        namaTellerLabel.setText(nama);
+        this.setLocationRelativeTo(null);
+    }
+
     /**
      * Creates new form telleFrame
      */
@@ -34,6 +54,7 @@ public class tellerFrame extends javax.swing.JFrame {
         showPanel(laporan, "LAPORAN TRANSAKSI");
         resetBorderAktif();
         menuLaporan.setBorder(borderAktif);
+        namaTellerLabel.setText(nama);
         this.setLocationRelativeTo(null);
     }
 
@@ -69,7 +90,7 @@ public class tellerFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        namaTellerLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         menuTransfer = new javax.swing.JPanel();
@@ -191,10 +212,10 @@ public class tellerFrame extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(32, 103, 178));
         jPanel7.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("nama teller");
+        namaTellerLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        namaTellerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namaTellerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaTellerLabel.setText("nama teller");
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/user_100px.png"))); // NOI18N
@@ -207,7 +228,7 @@ public class tellerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(namaTellerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -215,7 +236,7 @@ public class tellerFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(namaTellerLabel)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -728,7 +749,6 @@ public class tellerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -746,6 +766,7 @@ public class tellerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel menuLaporan;
     private javax.swing.JPanel menuLogout;
     private javax.swing.JPanel menuTransfer;
+    private javax.swing.JLabel namaTellerLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel transferLabel;
     // End of variables declaration//GEN-END:variables

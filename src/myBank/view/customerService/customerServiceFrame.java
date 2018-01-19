@@ -23,7 +23,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
      */
     public customerServiceFrame() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);        
     }
 
     private void showPanel(JPanel panel, String titleMenu) {
@@ -53,7 +53,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
         sidebarPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        namaNasabahLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         nasabahMenu = new javax.swing.JPanel();
         nasabahLabel = new javax.swing.JLabel();
@@ -175,10 +175,10 @@ public class customerServiceFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/user_100px.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("nama CS");
+        namaNasabahLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        namaNasabahLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namaNasabahLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaNasabahLabel.setText("nama CS");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -188,7 +188,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(namaNasabahLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -197,7 +197,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(namaNasabahLabel)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -608,7 +608,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
     private javax.swing.JPanel debetMenu;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -620,6 +619,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainContentPanel;
     private javax.swing.JLabel maximizeBtn;
     private javax.swing.JLabel minimizeBtn;
+    private javax.swing.JLabel namaNasabahLabel;
     private javax.swing.JLabel nasabahLabel;
     private javax.swing.JPanel nasabahMenu;
     private javax.swing.JPanel sidebarPanel;

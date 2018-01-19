@@ -3,33 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package myBank.model;
 
 /**
  *
  * @author Fauzi
  */
-public class userEntity {    
+public class userEntity {
+
     private String id_user;
-    private String pass;
-    private String keterangan;
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
+    private String nama;
+    private String jabatan;
     private String photo;
 
-    public String getPass() {
-        return pass;
+    public String getjabatan() {
+        return jabatan;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setjabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getId_user() {
@@ -47,5 +47,5 @@ public class userEntity {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-    
+
 }

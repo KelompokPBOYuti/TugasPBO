@@ -13,14 +13,14 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import myBank.controller.loginController;
+import myBank.controller.LoginController;
 
 /**
  *
  * @author Fauzi
  */
 public class loginFrame extends javax.swing.JFrame {
-    loginController loginCtrl = new loginController();
+    LoginController loginCtrl = new LoginController();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final double widthScreen = screenSize.getWidth();
     private final double heightScreen = screenSize.getHeight();
