@@ -21,10 +21,12 @@ import myBank.view.teller.tellerFrame;
  * @author Fauzi
  */
 public class loginDao {
+    List<userEntity> listUser = new ArrayList<>();
     connectionDatabase conn = new connectionDatabase();
-    
-    public boolean cekLogin(String idUser ,String password){
-        List<userEntity> listUser = new ArrayList<>();
+    public List<userEntity> loadUser(){
+        return listUser;
+    }
+    public boolean cekLogin(String idUser ,String password){        
         boolean result = false;
         String loginSQL;
         String ketrangan;
