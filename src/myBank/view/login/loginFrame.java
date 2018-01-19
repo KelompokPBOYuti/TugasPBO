@@ -13,14 +13,14 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-//import myBank.controller.LoginController;
+import myBank.controller.LoginController;
 
 /**
  *
  * @author Fauzi
  */
 public class loginFrame extends javax.swing.JFrame {
-    //LoginController loginCtrl = new LoginController();
+    LoginController loginCtrl = new LoginController();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final double widthScreen = screenSize.getWidth();
     private final double heightScreen = screenSize.getHeight();
@@ -553,7 +553,7 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void signInBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInBtnMouseClicked
-//        loginCtrl.login(this);
+        loginCtrl.login(this);
     }//GEN-LAST:event_signInBtnMouseClicked
 
     /**
