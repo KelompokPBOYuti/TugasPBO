@@ -373,8 +373,10 @@ public class customerServiceFrame extends javax.swing.JFrame {
 
         jPanel4.add(sidebarPanel, java.awt.BorderLayout.LINE_START);
 
+        contentPanel.setBackground(new java.awt.Color(32, 103, 178));
         contentPanel.setLayout(new java.awt.BorderLayout());
 
+        headerPanel.setBackground(new java.awt.Color(32, 103, 178));
         headerPanel.setPreferredSize(new java.awt.Dimension(547, 150));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -406,6 +408,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setBackground(new java.awt.Color(32, 103, 178));
         jPanel2.setPreferredSize(new java.awt.Dimension(5, 302));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -421,9 +424,11 @@ public class customerServiceFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_END);
 
+        jPanel3.setBackground(new java.awt.Color(32, 103, 178));
         jPanel3.setPreferredSize(new java.awt.Dimension(5, 5));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(32, 103, 178));
         jPanel1.setPreferredSize(new java.awt.Dimension(5, 5));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

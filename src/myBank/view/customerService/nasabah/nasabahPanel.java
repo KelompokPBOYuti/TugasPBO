@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package myBank.view.customerService.nasabah;
 
+import java.util.List;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import myBank.controller.nasabahController;
+import myBank.model.nasabahEntity;
 import myBank.style.buttonStyle;
 
 /**
@@ -13,12 +17,38 @@ import myBank.style.buttonStyle;
  * @author Fauzi
  */
 public class nasabahPanel extends javax.swing.JPanel {
+    nasabahController nasabahCtrl = new nasabahController();
+    DefaultTableModel tableModel = new DefaultTableModel();
     buttonStyle style = new buttonStyle();
+
     /**
      * Creates new form nasabahPanel
      */
     public nasabahPanel() {
         initComponents();
+        tableModel.addColumn("ID Nasabah");
+        tableModel.addColumn("No KTP");
+        tableModel.addColumn("Nama");
+        tableModel.addColumn("Jenis Kelamin");
+        tableModel.addColumn("Status");
+        nasabahTable.setModel(tableModel);
+        loadNasabahTable();
+    }
+    public JTextField getCari(){
+        return  cariTextField;
+    }
+    public void loadNasabahTable() {
+        List<nasabahEntity> listNasabah = nasabahCtrl.loadData();
+        tableModel.getDataVector().removeAllElements();
+        for (nasabahEntity nasabah : listNasabah) {
+            Object[] item = new Object[5];
+            item[0] = nasabah.getIdNasabah();
+            item[1] = nasabah.getNoKtp();
+            item[2] = nasabah.getNama();
+            item[3] = nasabah.getJenisKelamin();
+            item[4] = nasabah.getStatus();
+            tableModel.addRow(item);
+        }
     }
 
     /**
@@ -34,6 +64,7 @@ public class nasabahPanel extends javax.swing.JPanel {
         cariTextField = new javax.swing.JTextField();
         cariBtn = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        refreshBtn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         baruBtn = new javax.swing.JLabel();
         editBtn = new javax.swing.JLabel();
@@ -45,7 +76,7 @@ public class nasabahPanel extends javax.swing.JPanel {
         lastBtn = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        nasabahTable = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -64,10 +95,55 @@ public class nasabahPanel extends javax.swing.JPanel {
         cariBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cariBtn.setOpaque(true);
         cariBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        cariBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                cariBtnMouseMoved(evt);
+            }
+        });
+        cariBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cariBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cariBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cariBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cariBtnMouseReleased(evt);
+            }
+        });
 
         jComboBox1.setBackground(new java.awt.Color(35, 171, 226));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        refreshBtn.setBackground(new java.awt.Color(35, 171, 226));
+        refreshBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/refresh_30px.png"))); // NOI18N
+        refreshBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refreshBtn.setOpaque(true);
+        refreshBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        refreshBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseMoved(evt);
+            }
+        });
+        refreshBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                refreshBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                refreshBtnMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,8 +151,10 @@ public class nasabahPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(cariTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cariBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -87,10 +165,12 @@ public class nasabahPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cariBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(cariTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(cariBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cariTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -316,19 +396,25 @@ public class nasabahPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(32, 103, 178));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        nasabahTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Nasabah", "No KTP", "Nama", "Satatus"
             }
-        ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        nasabahTable.setGridColor(new java.awt.Color(255, 255, 255));
+        nasabahTable.setSelectionBackground(new java.awt.Color(35, 171, 226));
+        jScrollPane1.setViewportView(nasabahTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -411,7 +497,7 @@ public class nasabahPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lastBtnMouseReleased
 
     private void baruBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baruBtnMouseClicked
-        new nasabahNew(null, true).show();        
+        new nasabahNew(null, true).show();
 
     }//GEN-LAST:event_baruBtnMouseClicked
 
@@ -463,6 +549,56 @@ public class nasabahPanel extends javax.swing.JPanel {
         style.backgroundMouseReleased(hapusBtn);
     }//GEN-LAST:event_hapusBtnMouseReleased
 
+    private void cariBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseExited
+        style.borderMouseExit(cariBtn);
+    }//GEN-LAST:event_cariBtnMouseExited
+
+    private void cariBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseMoved
+        style.borderMouseMoved(cariBtn);
+    }//GEN-LAST:event_cariBtnMouseMoved
+
+    private void cariBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMousePressed
+        style.backgroundMousePressed(cariBtn);
+    }//GEN-LAST:event_cariBtnMousePressed
+
+    private void cariBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseReleased
+        style.backgroundMouseReleased(cariBtn);
+    }//GEN-LAST:event_cariBtnMouseReleased
+
+    private void cariBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseClicked
+        List<nasabahEntity> listNasabah = nasabahCtrl.caridata(this);
+        tableModel.getDataVector().removeAllElements();
+        for (nasabahEntity nasabah : listNasabah) {
+            Object[] item = new Object[5];
+            item[0] = nasabah.getIdNasabah();
+            item[1] = nasabah.getNoKtp();
+            item[2] = nasabah.getNama();
+            item[3] = nasabah.getJenisKelamin();
+            item[4] = nasabah.getStatus();
+            tableModel.addRow(item);
+        }
+    }//GEN-LAST:event_cariBtnMouseClicked
+
+    private void refreshBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseClicked
+        loadNasabahTable();
+    }//GEN-LAST:event_refreshBtnMouseClicked
+
+    private void refreshBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseExited
+        style.borderMouseExit(refreshBtn);
+    }//GEN-LAST:event_refreshBtnMouseExited
+
+    private void refreshBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseMoved
+        style.borderMouseMoved(refreshBtn);
+    }//GEN-LAST:event_refreshBtnMouseMoved
+
+    private void refreshBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMousePressed
+        style.backgroundMousePressed(refreshBtn);
+    }//GEN-LAST:event_refreshBtnMousePressed
+
+    private void refreshBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseReleased
+        style.backgroundMouseReleased(refreshBtn);
+    }//GEN-LAST:event_refreshBtnMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel baruBtn;
@@ -477,9 +613,10 @@ public class nasabahPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastBtn;
+    private javax.swing.JTable nasabahTable;
     private javax.swing.JLabel nextBtn;
     private javax.swing.JLabel prevBtn;
+    private javax.swing.JLabel refreshBtn;
     // End of variables declaration//GEN-END:variables
 }

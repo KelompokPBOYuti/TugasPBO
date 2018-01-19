@@ -8,14 +8,13 @@ package myBank.controller;
 import java.util.Date;
 //import java.sql.Date;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 import myBank.dao.nasabahDao;
 import myBank.model.nasabahEntity;
 import myBank.view.customerService.nasabah.nasabahNew;
+import myBank.view.customerService.nasabah.nasabahPanel;
 
 /**
  *
@@ -30,6 +29,9 @@ public class nasabahController {
         String id;
         id ="15"+ String.valueOf(noKTP.substring(noKTP.length() - 4 , noKTP.length())) + dao.noUrutNasabah();
         return id;
+    }
+    public List<nasabahEntity> loadData(){
+        return dao.selectNasabah();
     }
     public void addNasabah(nasabahNew view) {
         String message ="";
@@ -79,7 +81,13 @@ public class nasabahController {
         }
     }
 
-    public void ceka() {
-        System.out.println("masuk");
+    public List<nasabahEntity> caridata( nasabahPanel view){
+        String keyWord = view.getCari().getText();
+        List<nasabahEntity> res = new ArrayList<>();
+        if (!"".equals(keyWord))
+        {
+            res = dao.cariNasabah(keyWord);
+        }
+        return res;
     }
 }

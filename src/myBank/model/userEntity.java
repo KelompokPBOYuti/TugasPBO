@@ -10,16 +10,26 @@ package myBank.model;
  *
  * @author Fauzi
  */
-public class userEntity {
-    private String user;
+public class userEntity {    
     private String id_user;
+    private String pass;
+    private String keterangan;
 
-    public String getUser() {
-        return user;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+    private String photo;
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public String getId_user() {
@@ -28,6 +38,14 @@ public class userEntity {
 
     public void setId_user(String id_user) {
         this.id_user = id_user;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
     
 }

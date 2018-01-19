@@ -11,13 +11,16 @@ import static java.awt.Frame.MAXIMIZED_BOTH;
 import static java.awt.Frame.NORMAL;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import myBank.controller.loginController;
 
 /**
  *
  * @author Fauzi
  */
 public class loginFrame extends javax.swing.JFrame {
-
+    loginController loginCtrl = new loginController();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private final double widthScreen = screenSize.getWidth();
     private final double heightScreen = screenSize.getHeight();
@@ -33,9 +36,14 @@ public class loginFrame extends javax.swing.JFrame {
     public loginFrame() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
+        pesanValidasiLabel.setVisible(false);
     }
 
+    public void setMessageValidasi(String pesan, boolean set) {
+        pesanValidasiLabel.setText(pesan);
+        pesanValidasiLabel.setVisible(set);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +64,9 @@ public class loginFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         signInBtn = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        idUserTextField = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JPasswordField();
+        pesanValidasiLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         logoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -218,6 +227,9 @@ public class loginFrame extends javax.swing.JFrame {
             }
         });
         signInBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signInBtnMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 signInBtnMouseExited(evt);
             }
@@ -229,17 +241,20 @@ public class loginFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(32, 103, 178));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField1.setPreferredSize(new java.awt.Dimension(0, 40));
+        idUserTextField.setBackground(new java.awt.Color(32, 103, 178));
+        idUserTextField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        idUserTextField.setForeground(new java.awt.Color(255, 255, 255));
+        idUserTextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        idUserTextField.setPreferredSize(new java.awt.Dimension(0, 40));
 
-        jPasswordField1.setBackground(new java.awt.Color(32, 103, 178));
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(0, 40));
+        PasswordField.setBackground(new java.awt.Color(32, 103, 178));
+        PasswordField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        PasswordField.setPreferredSize(new java.awt.Dimension(0, 40));
+
+        pesanValidasiLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pesanValidasiLabel.setText("pesan validasi");
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -249,14 +264,17 @@ public class loginFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(idUserTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 220, Short.MAX_VALUE)))
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pesanValidasiLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         loginPanelLayout.setVerticalGroup(
@@ -267,13 +285,15 @@ public class loginFrame extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idUserTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesanValidasiLabel))
                 .addContainerGap())
         );
 
@@ -532,6 +552,10 @@ public class loginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPanel2MouseDragged
 
+    private void signInBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInBtnMouseClicked
+        loginCtrl.login(this);
+    }//GEN-LAST:event_signInBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -568,10 +592,12 @@ public class loginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JPanel barPanel;
     private javax.swing.JLabel closeBtn;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel fullOrNormalSSBtn;
+    private javax.swing.JTextField idUserTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -583,11 +609,18 @@ public class loginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel logoPanel;
     private javax.swing.JLabel minimizeBtn;
+    private javax.swing.JLabel pesanValidasiLabel;
     private javax.swing.JLabel signInBtn;
     // End of variables declaration//GEN-END:variables
+
+    public JPasswordField getPassword() {
+        return PasswordField;
+    }
+
+    public JTextField getIdUser() {
+        return idUserTextField;
+    }
 }
