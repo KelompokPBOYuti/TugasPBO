@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import myBank.database.connectionDatabase;
-import myBank.model.nasabahEntity;
+import myBank.model.NasabahEntity;
 
 /**
  *
@@ -63,21 +63,20 @@ public class nasabahDao {
         return String.valueOf(noUrut);
     }
 
-    public List<nasabahEntity> selectNasabah() {
-        List<nasabahEntity> listNasabah = new ArrayList<>();
-        String selectSQL = "SELECT id_ns,no_ktp,nama_ns,jk_ns,stts_ns FROM tbnasabah";
+    public List<NasabahEntity> selectNasabah() {
+        List<NasabahEntity> listNasabah = new ArrayList<>();
+        String selectSQL = "SELECT id_ns,no_ktp,nama_ns,jk_ns FROM tbnasabah";
         PreparedStatement statement = null;
         try {
             statement = conn.openConnection().prepareStatement(selectSQL);
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                nasabahEntity nasabah = new nasabahEntity();
+                NasabahEntity nasabah = new NasabahEntity();
                 nasabah.setIdNasabah(rs.getString("id_ns"));
                 nasabah.setNoKtp(rs.getString("no_ktp"));
                 nasabah.setNama(rs.getString("nama_ns"));
-                nasabah.setJenisKelamin(rs.getString("jk_ns"));
-                nasabah.setStatus(rs.getString("stts_ns"));
+                nasabah.setJenisKelamin(rs.getString("jk_ns"));                
                 listNasabah.add(nasabah);
             }
             statement.close();
@@ -89,8 +88,8 @@ public class nasabahDao {
         return listNasabah;
     }
 
-    public List<nasabahEntity> cariNasabah(String keyWord) {
-        List<nasabahEntity> listNasabah = new ArrayList<>();
+    public List<NasabahEntity> cariNasabah(String keyWord) {
+        List<NasabahEntity> listNasabah = new ArrayList<>();
         String selectSQL = "SELECT id_ns,no_ktp,nama_ns,jk_ns,stts_ns FROM tbnasabah WHERE id_ns = ? OR no_ktp = ? OR nama_ns LIKE ?";
         PreparedStatement statement = null;
         try {
@@ -105,12 +104,11 @@ public class nasabahDao {
             } else {
                 rs.first();
                 while (rs.next()) {
-                    nasabahEntity nasabah = new nasabahEntity();
+                    NasabahEntity nasabah = new NasabahEntity();
                     nasabah.setIdNasabah(rs.getString("id_ns"));
                     nasabah.setNoKtp(rs.getString("no_ktp"));
                     nasabah.setNama(rs.getString("nama_ns"));
                     nasabah.setJenisKelamin(rs.getString("jk_ns"));
-                    nasabah.setStatus(rs.getString("stts_ns"));
                     listNasabah.add(nasabah);
                 }
             }
@@ -123,11 +121,12 @@ public class nasabahDao {
         return listNasabah;
     }
 
-    public void insertNasabah(nasabahEntity nasabah) {
-        String insertSQL = "INSERT INTO tbnasabah(id_ns,no_ktp,nama_ns,tempat_lahir_ns,tanggal_lahir_ns,alamat_ns,tlp_ns,jk_ns,stts_ns,poto,tgl_daftar,tgl_update)"
+    public boolean insertNasabah(NasabahEntity nasabah) {
+        boolean result = false;
+        final String insertNasabahSQL = "INSERT INTO tbnasabah(id_ns,no_ktp,nama_ns,tempat_lahir_ns,tanggal_lahir_ns,alamat_ns,tlp_ns,jk_ns,poto,password,tgl_daftar,tgl_update)"
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement statement = conn.openConnection().prepareStatement(insertSQL);
+            PreparedStatement statement = conn.openConnection().prepareStatement(insertNasabahSQL);
             statement.setString(1, nasabah.getIdNasabah());
             statement.setString(2, nasabah.getNoKtp());
             statement.setString(3, nasabah.getNama());
@@ -135,18 +134,20 @@ public class nasabahDao {
             statement.setDate(5, nasabah.getTanggalLahir());
             statement.setString(6, nasabah.getAlamat());
             statement.setString(7, nasabah.getNoTlp());
-            statement.setString(8, nasabah.getJenisKelamin());
-            statement.setString(9, nasabah.getStatus());
-            statement.setString(10, nasabah.getPoto());
+            statement.setString(8, nasabah.getJenisKelamin());     
+            statement.setString(9, nasabah.getPoto());
+            statement.setString(10, nasabah.getPassword());
             statement.setDate(11, nasabah.getTglDaftar());
             statement.setDate(12, nasabah.getTglUpdate());
             statement.executeUpdate();
-            //fireOnInsert(nasabah);
+            result = true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error saat menyimpan data ke database : " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error saat menyimpan data nasabah ke database : " + ex.getMessage());
+            result = false;
         } finally {
             conn.closeConnection();
         }
+        return result;
     }
 
 }

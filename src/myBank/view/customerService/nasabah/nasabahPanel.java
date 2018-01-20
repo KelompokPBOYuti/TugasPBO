@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import myBank.controller.nasabahController;
-import myBank.model.nasabahEntity;
+import myBank.model.NasabahEntity;
 import myBank.style.buttonStyle;
 
 /**
@@ -29,8 +29,7 @@ public class nasabahPanel extends javax.swing.JPanel {
         tableModel.addColumn("ID Nasabah");
         tableModel.addColumn("No KTP");
         tableModel.addColumn("Nama");
-        tableModel.addColumn("Jenis Kelamin");
-        tableModel.addColumn("Status");
+        tableModel.addColumn("Jenis Kelamin");        
         nasabahTable.setModel(tableModel);
         loadNasabahTable();
     }
@@ -38,15 +37,14 @@ public class nasabahPanel extends javax.swing.JPanel {
         return  cariTextField;
     }
     public void loadNasabahTable() {
-        List<nasabahEntity> listNasabah = nasabahCtrl.loadData();
+        List<NasabahEntity> listNasabah = nasabahCtrl.loadData();
         tableModel.getDataVector().removeAllElements();
-        for (nasabahEntity nasabah : listNasabah) {
-            Object[] item = new Object[5];
+        for (NasabahEntity nasabah : listNasabah) {
+            Object[] item = new Object[4];
             item[0] = nasabah.getIdNasabah();
             item[1] = nasabah.getNoKtp();
             item[2] = nasabah.getNama();
-            item[3] = nasabah.getJenisKelamin();
-            item[4] = nasabah.getStatus();
+            item[3] = nasabah.getJenisKelamin();            
             tableModel.addRow(item);
         }
     }
@@ -401,7 +399,7 @@ public class nasabahPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Nasabah", "No KTP", "Nama", "Satatus"
+                "ID Nasabah", "No KTP", "Nama", "Jenis Kelamin"
             }
         ) {
             Class[] types = new Class [] {
@@ -566,15 +564,14 @@ public class nasabahPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cariBtnMouseReleased
 
     private void cariBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseClicked
-        List<nasabahEntity> listNasabah = nasabahCtrl.caridata(this);
+        List<NasabahEntity> listNasabah = nasabahCtrl.caridata(this);
         tableModel.getDataVector().removeAllElements();
-        for (nasabahEntity nasabah : listNasabah) {
-            Object[] item = new Object[5];
+        for (NasabahEntity nasabah : listNasabah) {
+            Object[] item = new Object[4];
             item[0] = nasabah.getIdNasabah();
             item[1] = nasabah.getNoKtp();
             item[2] = nasabah.getNama();
-            item[3] = nasabah.getJenisKelamin();
-            item[4] = nasabah.getStatus();
+            item[3] = nasabah.getJenisKelamin();           
             tableModel.addRow(item);
         }
     }//GEN-LAST:event_cariBtnMouseClicked

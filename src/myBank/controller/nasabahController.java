@@ -11,8 +11,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import myBank.dao.TabunganDao;
 import myBank.dao.nasabahDao;
-import myBank.model.nasabahEntity;
+import myBank.model.TabunganEntity;
+import myBank.model.NasabahEntity;
 import myBank.view.customerService.nasabah.nasabahNew;
 import myBank.view.customerService.nasabah.nasabahPanel;
 
@@ -21,21 +25,41 @@ import myBank.view.customerService.nasabah.nasabahPanel;
  * @author Fauzi
  */
 public class nasabahController {
-    nasabahDao dao = new nasabahDao();
+
+    nasabahDao nasabahDao = new nasabahDao();
+    TabunganDao tabunganDao = new TabunganDao();
     Date date = new Date();
     DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     String tglSekarang = formatter.format(date);
-    private String idNasabah(String noKTP){
+
+    private String generateNoRek(String noKTP) {
+        String rek = noKTP.substring(0, 6) + noKTP.substring(noKTP.length() - 4, noKTP.length()) + nasabahDao.noUrutNasabah();
+        return rek;
+    }
+
+    private String generateIdNasabah(String tgl) {
         String id;
-        id ="15"+ String.valueOf(noKTP.substring(noKTP.length() - 4 , noKTP.length())) + dao.noUrutNasabah();
+        tgl =tgl.replace("-", "");
+        tgl = tgl.substring(2, tgl.length());
+        id = "E" + nasabahDao.noUrutNasabah() + tgl ;
         return id;
     }
-    public List<nasabahEntity> loadData(){
-        return dao.selectNasabah();
+
+    private String generatePassword() {
+        Random random = new Random();
+        String pass = "";
+        for (int i = 0; i < 6; i++) {
+            pass += String.valueOf(random.nextInt(10));
+        }
+        return pass;
     }
+
+    public List<NasabahEntity> loadData() {
+        return nasabahDao.selectNasabah();
+    }
+
     public void addNasabah(nasabahNew view) {
-        String message ="";
-        String idNasabah;
+        String message = "";
         String noKtp = view.getNoKTP().getText();
         String nama = view.getNama().getText();
         String jenisKelamin;
@@ -49,23 +73,27 @@ public class nasabahController {
         String noTlp = view.getNoTlp().getText();
         String alamat = view.getAlamat().getText();
         String saldo = view.getSaldo().getText();
-        String status = "Aktif";
         String photo = view.getPathPhoto();
-        String tglDaftar = tglSekarang;
-        String tglUpdate = tglSekarang;
-        if ("".equals(noKtp) || "".equals(nama) || "".equals(jenisKelamin) || "".equals(tempatLahir) || "".equals(tanggalLahir) || "".equals(noTlp) || "".equals(alamat)) {
-            message ="* Data nasabah harus lengkap"+"<br>" + message;
-            view.setValidasi(message, true);
-        } else if (true == dao.cekNoKTP(noKtp)){
-            message ="* Maaf No KTP sudah digunakan " +"<br>"+ message;
-            view.setValidasi(message, true);
-        } else if(Integer.parseInt(saldo) < 100000){
-            message ="* Saldo awal minimal Rp 1.00.000 " +"<br>"+ message;
-            view.setValidasi(message, true);
+        if (photo.equals("")) {
+            photo = "null";
         }
-        else {
-            nasabahEntity nasabah = new nasabahEntity();
-            nasabah.setIdNasabah(idNasabah(noKtp));
+        if ("".equals(noKtp) || "".equals(nama) || "".equals(jenisKelamin) || "".equals(tempatLahir) || "".equals(tanggalLahir) || "".equals(noTlp) || "".equals(alamat)) {
+            message = "* Data nasabah harus lengkap" + "<br>" + message;
+            view.setValidasi(message, true);
+        } else if (true == nasabahDao.cekNoKTP(noKtp)) {
+            message = "* Maaf No KTP sudah digunakan";
+            view.setValidasi(message, true);
+        } else if (Integer.parseInt(saldo) < 100000) {
+            message = "* Saldo awal minimal Rp 100.000";
+            view.setValidasi(message, true);
+        } else {
+            String noRek = generateNoRek(noKtp);
+            String idNasabah = generateIdNasabah(tanggalLahir);
+            String tglDaftar = tglSekarang;
+            String tglUpdate = tglSekarang;
+            TabunganEntity tabungan = new TabunganEntity();
+            NasabahEntity nasabah = new NasabahEntity();
+            nasabah.setIdNasabah(idNasabah);
             nasabah.setNoKtp(noKtp);
             nasabah.setNama(nama);
             nasabah.setJenisKelamin(jenisKelamin);
@@ -73,20 +101,29 @@ public class nasabahController {
             nasabah.setTanggalLahir(java.sql.Date.valueOf(tanggalLahir));
             nasabah.setAlamat(alamat);
             nasabah.setNoTlp(noTlp);
-            nasabah.setStatus("aktif");
             nasabah.setPoto(photo);
+            nasabah.setPassword(generatePassword());
             nasabah.setTglDaftar(java.sql.Date.valueOf(tglDaftar));
             nasabah.setTglUpdate(java.sql.Date.valueOf(tglUpdate));
-            dao.insertNasabah(nasabah);
+            tabungan.setIdNasabah(idNasabah);
+            tabungan.setNo_rek(noRek);
+            tabungan.setSaldo(Double.valueOf(saldo));
+            if ((nasabahDao.insertNasabah(nasabah) == true) && (tabunganDao.insertTabungan(tabungan)== true)) {
+                JOptionPane.showMessageDialog(null, "Data nasabah berhasil di simpan");
+                TabunganEntity dataNasabah = tabunganDao.selectNasabahBaru(idNasabah);
+                view.setDataNasabah(dataNasabah.getNo_rek(), dataNasabah.getNoKtp(), dataNasabah.getNama(), dataNasabah.getJenisKelamin(), dataNasabah.getTempatLahir() +", " + dataNasabah.getTanggalLahir(), dataNasabah.getAlamat(), dataNasabah.getSaldo(), dataNasabah.getIdNasabah(), dataNasabah.getPassword());
+                view.setSlide2();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data nasabah gagal di simpan");
+            }
         }
     }
 
-    public List<nasabahEntity> caridata( nasabahPanel view){
+    public List<NasabahEntity> caridata(nasabahPanel view) {
         String keyWord = view.getCari().getText();
-        List<nasabahEntity> res = new ArrayList<>();
-        if (!"".equals(keyWord))
-        {
-            res = dao.cariNasabah(keyWord);
+        List<NasabahEntity> res = new ArrayList<>();
+        if (!"".equals(keyWord)) {
+            res = nasabahDao.cariNasabah(keyWord);
         }
         return res;
     }
