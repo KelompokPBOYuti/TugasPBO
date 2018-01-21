@@ -20,6 +20,7 @@ public class nasabahPanel extends javax.swing.JPanel {
     nasabahController nasabahCtrl = new nasabahController();
     DefaultTableModel tableModel = new DefaultTableModel();
     buttonStyle style = new buttonStyle();
+    String idNasabah ="";
 
     /**
      * Creates new form nasabahPanel
@@ -218,6 +219,9 @@ public class nasabahPanel extends javax.swing.JPanel {
             }
         });
         editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editBtnMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 editBtnMouseExited(evt);
             }
@@ -243,6 +247,9 @@ public class nasabahPanel extends javax.swing.JPanel {
             }
         });
         hapusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 hapusBtnMouseExited(evt);
             }
@@ -412,6 +419,11 @@ public class nasabahPanel extends javax.swing.JPanel {
         });
         nasabahTable.setGridColor(new java.awt.Color(255, 255, 255));
         nasabahTable.setSelectionBackground(new java.awt.Color(35, 171, 226));
+        nasabahTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nasabahTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(nasabahTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -564,7 +576,7 @@ public class nasabahPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cariBtnMouseReleased
 
     private void cariBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariBtnMouseClicked
-        List<NasabahEntity> listNasabah = nasabahCtrl.caridata(this);
+        List<NasabahEntity> listNasabah = nasabahCtrl.cariDataNasabah(this);
         tableModel.getDataVector().removeAllElements();
         for (NasabahEntity nasabah : listNasabah) {
             Object[] item = new Object[4];
@@ -595,6 +607,19 @@ public class nasabahPanel extends javax.swing.JPanel {
     private void refreshBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshBtnMouseReleased
         style.backgroundMouseReleased(refreshBtn);
     }//GEN-LAST:event_refreshBtnMouseReleased
+
+    private void editBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseClicked
+        nasabahCtrl.cekEditIdNasbah(idNasabah);        
+    }//GEN-LAST:event_editBtnMouseClicked
+
+    private void nasabahTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nasabahTableMouseClicked
+        int row = nasabahTable.getSelectedRow();
+        idNasabah = nasabahTable.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_nasabahTableMouseClicked
+
+    private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
+        nasabahCtrl.cekDeleteIdNasbah(idNasabah);
+    }//GEN-LAST:event_hapusBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

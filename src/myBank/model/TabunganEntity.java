@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package myBank.model;
 
 /**
@@ -10,8 +11,7 @@ package myBank.model;
  * @author Fauzi
  */
 public class TabunganEntity extends NasabahEntity {
-
-    private String no_rek;
+    private  String no_rek;    
     private double saldo;
 
     public String getNo_rek() {
@@ -21,6 +21,7 @@ public class TabunganEntity extends NasabahEntity {
     public void setNo_rek(String no_rek) {
         this.no_rek = no_rek;
     }
+    
 
     public double getSaldo() {
         return saldo;
@@ -29,5 +30,5 @@ public class TabunganEntity extends NasabahEntity {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
+    
 }

@@ -76,7 +76,7 @@ public class nasabahDao {
                 nasabah.setIdNasabah(rs.getString("id_ns"));
                 nasabah.setNoKtp(rs.getString("no_ktp"));
                 nasabah.setNama(rs.getString("nama_ns"));
-                nasabah.setJenisKelamin(rs.getString("jk_ns"));                
+                nasabah.setJenisKelamin(rs.getString("jk_ns"));
                 listNasabah.add(nasabah);
             }
             statement.close();
@@ -90,19 +90,14 @@ public class nasabahDao {
 
     public List<NasabahEntity> cariNasabah(String keyWord) {
         List<NasabahEntity> listNasabah = new ArrayList<>();
-        String selectSQL = "SELECT id_ns,no_ktp,nama_ns,jk_ns,stts_ns FROM tbnasabah WHERE id_ns = ? OR no_ktp = ? OR nama_ns LIKE ?";
+        String selectSQL = "SELECT id_ns,no_ktp,nama_ns,jk_ns FROM tbnasabah WHERE id_ns = ? OR no_ktp = ? OR nama_ns LIKE ?";
         PreparedStatement statement = null;
         try {
             statement = conn.openConnection().prepareStatement(selectSQL);
             statement.setString(1, keyWord);
             statement.setString(2, keyWord);
             statement.setString(3, "%" + keyWord + "%");
-            ResultSet rs = statement.executeQuery();
-            rs.last();
-            if (rs.getRow() == 0) {
-                JOptionPane.showMessageDialog(null, "Data nasabah tidak ditemukan");
-            } else {
-                rs.first();
+            ResultSet rs = statement.executeQuery();            
                 while (rs.next()) {
                     NasabahEntity nasabah = new NasabahEntity();
                     nasabah.setIdNasabah(rs.getString("id_ns"));
@@ -110,8 +105,10 @@ public class nasabahDao {
                     nasabah.setNama(rs.getString("nama_ns"));
                     nasabah.setJenisKelamin(rs.getString("jk_ns"));
                     listNasabah.add(nasabah);
+                }            
+                if (listNasabah.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Data nasabah tidak ditemukan");
                 }
-            }
             statement.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal mengambil seluruh data nasaabah : " + ex.getMessage());
@@ -134,7 +131,7 @@ public class nasabahDao {
             statement.setDate(5, nasabah.getTanggalLahir());
             statement.setString(6, nasabah.getAlamat());
             statement.setString(7, nasabah.getNoTlp());
-            statement.setString(8, nasabah.getJenisKelamin());     
+            statement.setString(8, nasabah.getJenisKelamin());
             statement.setString(9, nasabah.getPoto());
             statement.setString(10, nasabah.getPassword());
             statement.setDate(11, nasabah.getTglDaftar());
@@ -150,4 +147,71 @@ public class nasabahDao {
         return result;
     }
 
+    public NasabahEntity selectNasabahEdit(String idNasabah) {
+        NasabahEntity nasabah = new NasabahEntity();
+        String selectSQL = "SELECT no_ktp,nama_ns,jk_ns,tempat_lahir_ns,tanggal_lahir_ns,alamat_ns,tlp_ns,poto FROM tbnasabah WHERE id_ns=?";
+        PreparedStatement statement = null;
+        try {
+            statement = conn.openConnection().prepareStatement(selectSQL);
+            statement.setString(1, idNasabah);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                nasabah.setNoKtp(rs.getString("no_ktp"));
+                nasabah.setNama(rs.getString("nama_ns"));
+                nasabah.setJenisKelamin(rs.getString("jk_ns"));
+                nasabah.setTempatLahir(rs.getString("tempat_lahir_ns"));
+                nasabah.setTanggalLahir(rs.getDate("tanggal_lahir_ns"));
+                nasabah.setAlamat(rs.getString("alamat_ns"));
+                nasabah.setNoTlp(rs.getString("tlp_ns"));
+                nasabah.setPoto(rs.getString("poto"));
+            }
+            statement.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi Erorr saat select data nasabah edit " + e.getMessage());
+        } finally {
+            conn.closeConnection();
+        }
+        return nasabah;
+    }
+    public boolean updateNasabah(NasabahEntity nasabah){
+        boolean result =false;        
+        final String UpdateSQL = "UPDATE tbnasabah SET no_ktp = ? ,nama_ns = ? , tempat_lahir_ns = ? ,tanggal_lahir_ns = ? ,alamat_ns = ? ,tlp_ns = ? , jk_ns = ? , poto = ? , tgl_update = ? WHERE id_ns = ?";
+        try {
+            PreparedStatement statement = conn.openConnection().prepareStatement(UpdateSQL);            
+            statement.setString(1, nasabah.getNoKtp());
+            statement.setString(2, nasabah.getNama());
+            statement.setString(3, nasabah.getTempatLahir());
+            statement.setDate(4, nasabah.getTanggalLahir());
+            statement.setString(5, nasabah.getAlamat());
+            statement.setString(6, nasabah.getNoTlp());
+            statement.setString(7, nasabah.getJenisKelamin());
+            statement.setString(8, nasabah.getPoto());           
+            statement.setDate(9, nasabah.getTglUpdate());
+            statement.setString(10, nasabah.getIdNasabah());
+            statement.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error saat update data nasabah ke database : " + ex.getMessage());
+            result = false;
+        } finally {
+            conn.closeConnection();
+        }
+        return result;
+    }
+    //delete
+    public boolean deleteNasabah(String idNasabah) {
+        boolean result = false;
+        String deleteSQL = "DELETE FROM tbnasabah WHERE id_ns = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = conn.openConnection().prepareStatement(deleteSQL);
+            statement.setString(1, idNasabah);
+            statement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Data nasabah gagal dihapus "+ e.getMessage());
+            result = false;
+        }
+        return result;
+    }
 }

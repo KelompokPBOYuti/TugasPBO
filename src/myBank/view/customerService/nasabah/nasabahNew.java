@@ -5,6 +5,8 @@
  */
 package myBank.view.customerService.nasabah;
 
+import java.awt.Color;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
@@ -29,8 +31,8 @@ public class nasabahNew extends javax.swing.JDialog {
     nasabahController nasabahCtrl = new nasabahController();
     ButtonGroup radioGroup = new ButtonGroup();
     buttonStyle btnStyle = new buttonStyle();
-    photoStyle photo = new photoStyle();
-    String pathPhoto = "";
+    photoStyle photoStyle = new photoStyle();
+    String pathPhoto = "null";
     String tanggalLahir;
 
     /**
@@ -69,7 +71,7 @@ public class nasabahNew extends javax.swing.JDialog {
     }
 
     public void setValidasi(String pesan, boolean stts) {
-        validasiPesanLabel.setText("<html>" + pesan + "</html>");
+        validasiPesanLabel.setText(pesan);
         validasiPesanLabel.setVisible(stts);
     }
 
@@ -125,7 +127,6 @@ public class nasabahNew extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         closeBtn = new javax.swing.JLabel();
-        minimizeBtn = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         slinde1Panel = new javax.swing.JPanel();
@@ -178,9 +179,10 @@ public class nasabahNew extends javax.swing.JDialog {
         jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(750, 630));
-        setPreferredSize(new java.awt.Dimension(750, 630));
-        setSize(new java.awt.Dimension(750, 630));
+        setMinimumSize(new java.awt.Dimension(750, 600));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(750, 600));
+        setSize(new java.awt.Dimension(750, 600));
 
         jPanel1.setBackground(new java.awt.Color(32, 103, 178));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -192,11 +194,25 @@ public class nasabahNew extends javax.swing.JDialog {
         closeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/close_screen_20px.png"))); // NOI18N
         closeBtn.setOpaque(true);
-
-        minimizeBtn.setBackground(new java.awt.Color(32, 103, 178));
-        minimizeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        minimizeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/minimize_Screen_20px.png"))); // NOI18N
-        minimizeBtn.setOpaque(true);
+        closeBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                closeBtnMouseMoved(evt);
+            }
+        });
+        closeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                closeBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                closeBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                closeBtnMouseReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -209,15 +225,12 @@ public class nasabahNew extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
-                .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
                 .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-            .addComponent(minimizeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -409,25 +422,15 @@ public class nasabahNew extends javax.swing.JDialog {
             .addGroup(slinde1PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slinde1PanelLayout.createSequentialGroup()
-                        .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                .addComponent(saldoTextField)
-                                .addGap(220, 220, 220))
-                            .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addContainerGap(622, Short.MAX_VALUE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
                         .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(tanggalLahirDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, slinde1PanelLayout.createSequentialGroup()
                                 .addComponent(jKLakiRB)
-                                .addGap(28, 28, 28)
+                                .addGap(27, 27, 27)
                                 .addComponent(jkPerempuanRB))
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,28 +444,37 @@ public class nasabahNew extends javax.swing.JDialog {
                             .addComponent(noTlpTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(slinde1PanelLayout.createSequentialGroup()
-                                .addComponent(validasiPesanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slinde1PanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(slinde1PanelLayout.createSequentialGroup()
                                         .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(potoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39))))))
+                                .addGap(89, 89, 89))
+                            .addGroup(slinde1PanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(validasiPesanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(slinde1PanelLayout.createSequentialGroup()
+                        .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(slinde1PanelLayout.createSequentialGroup()
+                                .addComponent(saldoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(slinde1PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         slinde1PanelLayout.setVerticalGroup(
             slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(slinde1PanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(2, 2, 2)
-                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
                         .addComponent(noKTPTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -476,44 +488,38 @@ public class nasabahNew extends javax.swing.JDialog {
                             .addComponent(jKLakiRB)
                             .addComponent(jkPerempuanRB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addComponent(potoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tempatLahirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(tempatLahirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(potoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tanggalLahirDate, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, 0)
-                        .addComponent(noTlpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
-                    .addGroup(slinde1PanelLayout.createSequentialGroup()
                         .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tanggalLahirDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noTlpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(5, 5, 5)
                 .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(validasiPesanLabel))
-                .addGap(2, 2, 2)
-                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addGroup(slinde1PanelLayout.createSequentialGroup()
-                        .addComponent(saldoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(slinde1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saldoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addGap(7, 7, 7))
         );
 
         jPanel4.add(slinde1Panel, "card2");
@@ -559,7 +565,7 @@ public class nasabahNew extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(printnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(613, Short.MAX_VALUE))
+                .addContainerGap(623, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,7 +731,7 @@ public class nasabahNew extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(jLabel30))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         slide2Panel.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -745,21 +751,15 @@ public class nasabahNew extends javax.swing.JDialog {
 
     private void potoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseClicked
         JFileChooser jfc = new JFileChooser();
-        FileFilter jpgFilter, gifFilter, bothFilter;
-        jpgFilter = new FileNameExtensionFilter("Gambar JPEG", "jpg");
-        gifFilter = new FileNameExtensionFilter("Gambar GIF", "png");
-        bothFilter = new FileNameExtensionFilter("Gambar JPEG dan GIF", "jpg", "png");
+        FileFilter pngFilter = new FileNameExtensionFilter("photo (.png)", "png");
         jfc.setAcceptAllFileFilterUsed(false);
-        jfc.addChoosableFileFilter(bothFilter);
-        jfc.addChoosableFileFilter(jpgFilter);
-        jfc.addChoosableFileFilter(gifFilter);
+        jfc.addChoosableFileFilter(pngFilter);        
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             pathPhoto = jfc.getSelectedFile().toString();
             if (!"".equals(pathPhoto)) {
                 pathPhoto = pathPhoto.replace("\\", "/");
-                BufferedImage loadImg = photo.loadImage(pathPhoto);
-                ImageIcon imageIcon = new ImageIcon(photo.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
-                potoLabel.setText("");
+                BufferedImage loadImg = photoStyle.loadImage(pathPhoto);
+                ImageIcon imageIcon = new ImageIcon(photoStyle.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
                 potoLabel.setIcon(imageIcon);
             }
         }
@@ -809,7 +809,8 @@ public class nasabahNew extends javax.swing.JDialog {
     }//GEN-LAST:event_potoCancleBtnMouseMoved
 
     private void potoCancleBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoCancleBtnMouseClicked
-        pathPhoto = "";
+        pathPhoto = "null";
+        potoLabel.setIcon(new ImageIcon("src/mybank/resource/icon/user_100px.png"));
     }//GEN-LAST:event_potoCancleBtnMouseClicked
 
     private void potoCancleBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoCancleBtnMouseExited
@@ -851,6 +852,26 @@ public class nasabahNew extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_saldoTextFieldKeyTyped
+
+    private void closeBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseExited
+        btnStyle.backgroundMouseExit(closeBtn);
+    }//GEN-LAST:event_closeBtnMouseExited
+
+    private void closeBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseMoved
+        closeBtn.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_closeBtnMouseMoved
+
+    private void closeBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseReleased
+        closeBtn.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_closeBtnMouseReleased
+
+    private void closeBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMousePressed
+        btnStyle.backgroundMousePressed(closeBtn);
+    }//GEN-LAST:event_closeBtnMousePressed
+
+    private void closeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_closeBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -929,7 +950,6 @@ public class nasabahNew extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jenisKelaminLabel;
     private javax.swing.JRadioButton jkPerempuanRB;
-    private javax.swing.JLabel minimizeBtn;
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField namaTextField;
     private javax.swing.JLabel noKTPLabel;

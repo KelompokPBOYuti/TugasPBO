@@ -59,8 +59,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
         nasabahLabel = new javax.swing.JLabel();
         tabunganMenu = new javax.swing.JPanel();
         tabunganLabel = new javax.swing.JLabel();
-        debetMenu = new javax.swing.JPanel();
-        debetLabel = new javax.swing.JLabel();
         logoutMenu = new javax.swing.JPanel();
         logoutLabel = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
@@ -289,46 +287,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
 
         jPanel6.add(tabunganMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, -1));
 
-        debetMenu.setBackground(new java.awt.Color(32, 103, 178));
-        debetMenu.setPreferredSize(new java.awt.Dimension(200, 40));
-
-        debetLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        debetLabel.setForeground(new java.awt.Color(255, 255, 255));
-        debetLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/debeADMtMenu_30px.png"))); // NOI18N
-        debetLabel.setText("DEBET");
-        debetLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        debetLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                debetLabelMouseMoved(evt);
-            }
-        });
-        debetLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                debetLabelMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                debetLabelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                debetLabelMouseReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout debetMenuLayout = new javax.swing.GroupLayout(debetMenu);
-        debetMenu.setLayout(debetMenuLayout);
-        debetMenuLayout.setHorizontalGroup(
-            debetMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(debetMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(debetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-        );
-        debetMenuLayout.setVerticalGroup(
-            debetMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(debetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel6.add(debetMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, -1));
-
         logoutMenu.setBackground(new java.awt.Color(32, 103, 178));
         logoutMenu.setPreferredSize(new java.awt.Dimension(200, 40));
 
@@ -367,7 +325,7 @@ public class customerServiceFrame extends javax.swing.JFrame {
             .addComponent(logoutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel6.add(logoutMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
+        jPanel6.add(logoutMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, -1));
 
         sidebarPanel.add(jPanel6, java.awt.BorderLayout.CENTER);
 
@@ -529,22 +487,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
         style.backgroundMouseReleased(tabunganMenu);
     }//GEN-LAST:event_tabunganLabelMouseReleased
 
-    private void debetLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseExited
-        style.backgroundMouseExit(debetMenu);
-    }//GEN-LAST:event_debetLabelMouseExited
-
-    private void debetLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseMoved
-        style.backgroundMouseMoved(debetMenu);
-    }//GEN-LAST:event_debetLabelMouseMoved
-
-    private void debetLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMousePressed
-        style.backgroundMousePressed(debetMenu);
-    }//GEN-LAST:event_debetLabelMousePressed
-
-    private void debetLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debetLabelMouseReleased
-        style.backgroundMouseReleased(debetMenu);
-    }//GEN-LAST:event_debetLabelMouseReleased
-
     private void logoutLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseExited
         style.backgroundMouseExit(logoutMenu);
     }//GEN-LAST:event_logoutLabelMouseExited
@@ -604,8 +546,6 @@ public class customerServiceFrame extends javax.swing.JFrame {
     private javax.swing.JPanel barPanel;
     private javax.swing.JLabel closeBtn;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel debetLabel;
-    private javax.swing.JPanel debetMenu;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
