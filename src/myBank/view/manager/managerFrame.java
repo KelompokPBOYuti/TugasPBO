@@ -5,17 +5,35 @@
  */
 package myBank.view.manager;
 
+import javax.swing.JPanel;
+import myBank.style.buttonStyle;
+import myBank.view.manager.pegawai.PegawaiPanel;
+
 /**
  *
  * @author Agus
  */
 public class managerFrame extends javax.swing.JFrame {
 
+    PegawaiPanel pegawaiPanel = new PegawaiPanel();
+    buttonStyle btnStyle = new buttonStyle();
+
     /**
      * Creates new form managerFrame
      */
     public managerFrame() {
         initComponents();
+        showPanel(pegawaiPanel, "DATA PEGAWAI");
+    }
+
+    private void showPanel(JPanel panel, String titleMenu) {
+        mainContentPanel.removeAll();
+        mainContentPanel.repaint();
+        mainContentPanel.revalidate();
+        mainContentPanel.add(panel);
+        titleLabel.setText(titleMenu);
+        mainContentPanel.repaint();
+        mainContentPanel.revalidate();
     }
 
     /**
@@ -39,12 +57,18 @@ public class managerFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        menuPegawai = new javax.swing.JPanel();
+        pegawaiLabel = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        mainContentPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,9 +141,6 @@ public class managerFrame extends javax.swing.JFrame {
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/user_100px.png"))); // NOI18N
-        jLabel6.setMaximumSize(new java.awt.Dimension(100, 100));
-        jLabel6.setMinimumSize(new java.awt.Dimension(100, 100));
-        jLabel6.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +164,7 @@ public class managerFrame extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 22, Short.MAX_VALUE))
@@ -155,16 +176,18 @@ public class managerFrame extends javax.swing.JFrame {
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel10.setBackground(new java.awt.Color(32, 103, 178));
+        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel10.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel10.setPreferredSize(new java.awt.Dimension(200, 40));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
-        jLabel8.setText("LOG OUT");
-        jLabel8.setMaximumSize(new java.awt.Dimension(89, 30));
-        jLabel8.setMinimumSize(new java.awt.Dimension(89, 30));
-        jLabel8.setPreferredSize(new java.awt.Dimension(89, 30));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
+        jLabel9.setText("LOG OUT");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setMaximumSize(new java.awt.Dimension(89, 30));
+        jLabel9.setMinimumSize(new java.awt.Dimension(89, 30));
+        jLabel9.setPreferredSize(new java.awt.Dimension(89, 30));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -172,17 +195,124 @@ public class managerFrame extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+
+        menuPegawai.setBackground(new java.awt.Color(32, 103, 178));
+        menuPegawai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuPegawai.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        pegawaiLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pegawaiLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pegawaiLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/menuNasabah_30px.png"))); // NOI18N
+        pegawaiLabel.setText("PEGAWAI");
+        pegawaiLabel.setMaximumSize(new java.awt.Dimension(89, 30));
+        pegawaiLabel.setMinimumSize(new java.awt.Dimension(89, 30));
+        pegawaiLabel.setPreferredSize(new java.awt.Dimension(89, 30));
+        pegawaiLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pegawaiLabelMouseMoved(evt);
+            }
+        });
+        pegawaiLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pegawaiLabelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pegawaiLabelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pegawaiLabelMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menuPegawaiLayout = new javax.swing.GroupLayout(menuPegawai);
+        menuPegawai.setLayout(menuPegawaiLayout);
+        menuPegawaiLayout.setHorizontalGroup(
+            menuPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPegawaiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pegawaiLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        menuPegawaiLayout.setVerticalGroup(
+            menuPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPegawaiLayout.createSequentialGroup()
+                .addComponent(pegawaiLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(menuPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 0));
+        jPanel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel12.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
+        jLabel11.setText("TABUNGAN");
+        jLabel11.setMaximumSize(new java.awt.Dimension(89, 30));
+        jLabel11.setMinimumSize(new java.awt.Dimension(89, 30));
+        jLabel11.setPreferredSize(new java.awt.Dimension(89, 30));
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+
+        jPanel13.setBackground(new java.awt.Color(32, 103, 178));
+        jPanel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel13.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/logOut_30px.png"))); // NOI18N
+        jLabel12.setText("LOG OUT");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.setMaximumSize(new java.awt.Dimension(89, 30));
+        jLabel12.setMinimumSize(new java.awt.Dimension(89, 30));
+        jLabel12.setPreferredSize(new java.awt.Dimension(89, 30));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
 
         jPanel4.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -194,12 +324,12 @@ public class managerFrame extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(645, 150));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Judul Menu");
-        jLabel4.setMaximumSize(new java.awt.Dimension(210, 44));
-        jLabel4.setMinimumSize(new java.awt.Dimension(210, 44));
-        jLabel4.setPreferredSize(new java.awt.Dimension(210, 44));
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Judul Menu");
+        titleLabel.setMaximumSize(new java.awt.Dimension(210, 44));
+        titleLabel.setMinimumSize(new java.awt.Dimension(210, 44));
+        titleLabel.setPreferredSize(new java.awt.Dimension(210, 44));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,7 +344,7 @@ public class managerFrame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -225,32 +355,37 @@ public class managerFrame extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setMinimumSize(new java.awt.Dimension(0, 0));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 332, Short.MAX_VALUE)
-        );
-
-        jPanel5.add(jPanel7, java.awt.BorderLayout.CENTER);
+        mainContentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainContentPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+        mainContentPanel.setLayout(new java.awt.BorderLayout());
+        jPanel5.add(mainContentPanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pegawaiLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pegawaiLabelMouseExited
+        btnStyle.backgroundMouseExit(menuPegawai);
+    }//GEN-LAST:event_pegawaiLabelMouseExited
+
+    private void pegawaiLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pegawaiLabelMouseMoved
+        btnStyle.backgroundMouseMoved(menuPegawai);
+    }//GEN-LAST:event_pegawaiLabelMouseMoved
+
+    private void pegawaiLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pegawaiLabelMousePressed
+        btnStyle.backgroundMousePressed(menuPegawai);
+    }//GEN-LAST:event_pegawaiLabelMousePressed
+
+    private void pegawaiLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pegawaiLabelMouseReleased
+        btnStyle.backgroundMouseReleased(menuPegawai);
+    }//GEN-LAST:event_pegawaiLabelMouseReleased
 
     /**
      * @param args the command line arguments
@@ -289,22 +424,28 @@ public class managerFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel mainContentPanel;
+    private javax.swing.JPanel menuPegawai;
+    private javax.swing.JLabel pegawaiLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
