@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import myBank.controller.pegawaiController;
-import myBank.model.PegawaiEntity;
 import myBank.style.buttonStyle;
 import myBank.style.photoStyle;
 
@@ -26,84 +25,44 @@ import myBank.style.photoStyle;
  *
  * @author Fauzi
  */
-public class pegawaiEdit extends javax.swing.JDialog {
-
+public class PegawaiNew extends javax.swing.JDialog {
     ButtonGroup radioGroup = new ButtonGroup();
+    pegawaiController pegawaiCtrl = new pegawaiController();
     buttonStyle btnStyle = new buttonStyle();
     photoStyle photoStyle = new photoStyle();
-    pegawaiController pegawaiCtrl = new pegawaiController();
-    PegawaiPanel pegawaiPanel;
-    private String idPegawai = "";
     private String pathPhoto = "null";
-    private String pathRestorePhoto = "null";
-    private String tglLahir="";
-    private String noKtpRestore="";
-
+    private String tglLahir ="";
+    private PegawaiPanel pegawaipanel;
     /**
-     * Creates new form pegawaiEdit
-     *
-     * @param parent
-     * @param modal
-     * @param pegawaiPanel
+     * Creates new form pegawaiNew
      */
-    public pegawaiEdit(java.awt.Frame parent, boolean modal, PegawaiPanel pegawaiPanel) {
+    public PegawaiNew(java.awt.Frame parent, boolean modal,PegawaiPanel pegawaipanel) {
+        super(parent, modal);
+        initComponents();
+        this.pegawaipanel = pegawaipanel;
+        radioGroup.add(jkLakiLakiRadioButton);
+        radioGroup.add(jkPremepuanRadioButton);
+        tanggalLahirDate.setDateFormatString("yyyy-MM-dd");
+        jkLakiLakiRadioButton.setSelected(true);
+        validasiPesanLabel.setVisible(false);
+        this.setLocationRelativeTo(null);
+    }
+    public PegawaiNew(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         radioGroup.add(jkLakiLakiRadioButton);
         radioGroup.add(jkPremepuanRadioButton);
-        this.idPegawai = pegawaiPanel.getIdPegawai();
-        this.pegawaiPanel = pegawaiPanel;
         tanggalLahirDate.setDateFormatString("yyyy-MM-dd");
+        jkLakiLakiRadioButton.setSelected(true);
+        validasiPesanLabel.setVisible(false);
         this.setLocationRelativeTo(null);
-        loadData();
-    }
-
-    public pegawaiEdit(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
-
-    public void loadData() {
-        PegawaiEntity pegawai = pegawaiCtrl.loadEditPegawai(idPegawai);
-        noKtpTextField.setText(pegawai.getNoKtp());
-        noKtpRestore = pegawai.getNoKtp();
-        namaLengkapTextField.setText(pegawai.getNama());
-        if (pegawai.getJenisKelamin().equals("Laki - laki")) {
-            jkLakiLakiRadioButton.setSelected(true);
-        } else {
-            jkPremepuanRadioButton.setSelected(true);
-        }
-        tempatLahirTextFiled.setText(pegawai.getTempatLahir());
-        tanggalLahirDate.setDate(pegawai.getTanggalLahir());
-        JabatanComboBox.setSelectedItem(pegawai.getJabatan());
-        alamatTextArea.setText(pegawai.getAlamat());
-        noTlpTextField.setText(pegawai.getNoTlp());     
-        if (pegawai.getPhoto().equals("null")) {
-            potoLabel.setIcon(new ImageIcon("src/mybank/resource/icon/user_100px.png"));
-            pathRestorePhoto = "null";
-            pathPhoto = "null";
-        } else {
-            pathPhoto = "src/mybank/resource/photo/pegawai/" + pegawai.getPhoto();
-            pathRestorePhoto = pathPhoto;
-            BufferedImage loadImg = photoStyle.loadImage(pathPhoto);
-            ImageIcon imageIcon = new ImageIcon(photoStyle.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
-            potoLabel.setIcon(imageIcon);
-        }
-
     }
     public void refreshPegawaiTable(){
-        pegawaiPanel.loadPegawaiTable();
+        pegawaipanel.loadPegawaiTable();
     }
     public void setValidasi(String pesan, boolean stts) {
         validasiPesanLabel.setText(pesan);
         validasiPesanLabel.setVisible(stts);
-    }
-    public String getIdPegawai(){
-        return idPegawai;
-    }
-    public String getNoKtpRestore(){
-        return noKtpRestore;
     }
     public JTextField getNoKtp() {
         return noKtpTextField;
@@ -134,9 +93,6 @@ public class pegawaiEdit extends javax.swing.JDialog {
     }
     public String getPahtPhoto(){
         return pathPhoto;
-    }
-    public String getPahtRestorePhoto(){
-        return pathRestorePhoto;
     }
 
     /**
@@ -173,25 +129,27 @@ public class pegawaiEdit extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         JabatanComboBox = new javax.swing.JComboBox();
         potoLabel = new javax.swing.JLabel();
+        potoBtn = new javax.swing.JLabel();
+        potoCancleBtn = new javax.swing.JLabel();
         validasiPesanLabel = new javax.swing.JLabel();
         simpanBtn = new javax.swing.JLabel();
-        potoBtn = new javax.swing.JLabel();
-        potoundoBtn = new javax.swing.JLabel();
-        potoCancleBtn = new javax.swing.JLabel();
+        slide2Panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 630));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(750, 630));
 
+        jPanel1.setBackground(new java.awt.Color(32, 103, 178));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 255, 255)));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(32, 103, 178));
+        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(600, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("EDIT PEGAWAI");
+        jLabel2.setText("PEGAWAI BARU");
 
         closeBtn.setBackground(new java.awt.Color(32, 103, 178));
         closeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -233,7 +191,7 @@ public class pegawaiEdit extends javax.swing.JDialog {
             .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setLayout(new java.awt.CardLayout());
 
@@ -293,6 +251,8 @@ public class pegawaiEdit extends javax.swing.JDialog {
         noTlpTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
         alamatTextArea.setColumns(20);
+        alamatTextArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alamatTextArea.setLineWrap(true);
         alamatTextArea.setRows(5);
         jScrollPane1.setViewportView(alamatTextArea);
 
@@ -314,45 +274,6 @@ public class pegawaiEdit extends javax.swing.JDialog {
         potoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         potoLabel.setPreferredSize(new java.awt.Dimension(100, 100));
         potoLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        validasiPesanLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        validasiPesanLabel.setForeground(new java.awt.Color(255, 255, 255));
-        validasiPesanLabel.setText("*Pesan Validasi");
-        validasiPesanLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)), "Catatan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        simpanBtn.setBackground(new java.awt.Color(35, 171, 226));
-        simpanBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        simpanBtn.setForeground(new java.awt.Color(255, 255, 255));
-        simpanBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        simpanBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/updateData_30px.png"))); // NOI18N
-        simpanBtn.setText("EDIT");
-        simpanBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        simpanBtn.setOpaque(true);
-        simpanBtn.setPreferredSize(new java.awt.Dimension(34, 40));
-        simpanBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                simpanBtnMouseMoved(evt);
-            }
-        });
-        simpanBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                simpanBtnMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                simpanBtnMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                simpanBtnMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                simpanBtnMouseReleased(evt);
-            }
-        });
-        simpanBtn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                simpanBtnPropertyChange(evt);
-            }
-        });
 
         potoBtn.setBackground(new java.awt.Color(35, 171, 226));
         potoBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -376,31 +297,6 @@ public class pegawaiEdit extends javax.swing.JDialog {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 potoBtnMouseReleased(evt);
-            }
-        });
-
-        potoundoBtn.setBackground(new java.awt.Color(35, 171, 226));
-        potoundoBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        potoundoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/undo_30px.png"))); // NOI18N
-        potoundoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        potoundoBtn.setOpaque(true);
-        potoundoBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                potoundoBtnMouseMoved(evt);
-            }
-        });
-        potoundoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                potoundoBtnMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                potoundoBtnMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                potoundoBtnMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                potoundoBtnMouseReleased(evt);
             }
         });
 
@@ -429,6 +325,40 @@ public class pegawaiEdit extends javax.swing.JDialog {
             }
         });
 
+        validasiPesanLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        validasiPesanLabel.setForeground(new java.awt.Color(255, 255, 255));
+        validasiPesanLabel.setText("*Pesan Validasi");
+        validasiPesanLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)), "Catatan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        simpanBtn.setBackground(new java.awt.Color(35, 171, 226));
+        simpanBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        simpanBtn.setForeground(new java.awt.Color(255, 255, 255));
+        simpanBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        simpanBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myBank/resource/icon/Save_30px.png"))); // NOI18N
+        simpanBtn.setText("SIMPAN");
+        simpanBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        simpanBtn.setOpaque(true);
+        simpanBtn.setPreferredSize(new java.awt.Dimension(34, 40));
+        simpanBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseMoved(evt);
+            }
+        });
+        simpanBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                simpanBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                simpanBtnMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout slide1PanelLayout = new javax.swing.GroupLayout(slide1Panel);
         slide1Panel.setLayout(slide1PanelLayout);
         slide1PanelLayout.setHorizontalGroup(
@@ -454,15 +384,13 @@ public class pegawaiEdit extends javax.swing.JDialog {
                                 .addComponent(tanggalLahirDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(slide1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(potoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slide1PanelLayout.createSequentialGroup()
-                                .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 149, Short.MAX_VALUE)
+                        .addGroup(slide1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(slide1PanelLayout.createSequentialGroup()
+                                .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(potoundoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(potoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(83, 83, 83))
                     .addGroup(slide1PanelLayout.createSequentialGroup()
                         .addGroup(slide1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,17 +437,11 @@ public class pegawaiEdit extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
                     .addComponent(potoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(potoundoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(potoCancleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tanggalLahirDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(slide1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(slide1PanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(validasiPesanLabel)
-                        .addGap(29, 29, 29)
-                        .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(slide1PanelLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -531,62 +453,36 @@ public class pegawaiEdit extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JabatanComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)))
+                        .addComponent(JabatanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(slide1PanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(validasiPesanLabel)
+                        .addGap(29, 29, 29)
+                        .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         jPanel3.add(slide1Panel, "card2");
 
+        javax.swing.GroupLayout slide2PanelLayout = new javax.swing.GroupLayout(slide2Panel);
+        slide2Panel.setLayout(slide2PanelLayout);
+        slide2PanelLayout.setHorizontalGroup(
+            slide2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 731, Short.MAX_VALUE)
+        );
+        slide2PanelLayout.setVerticalGroup(
+            slide2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(slide2Panel, "card3");
+
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void closeBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseMoved
-        closeBtn.setBackground(new Color(232, 17, 35));
-    }//GEN-LAST:event_closeBtnMouseMoved
-
-    private void closeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_closeBtnMouseClicked
-
-    private void closeBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseExited
-        btnStyle.backgroundMouseExit(closeBtn);
-    }//GEN-LAST:event_closeBtnMouseExited
-
-    private void closeBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMousePressed
-        btnStyle.backgroundMousePressed(closeBtn);
-    }//GEN-LAST:event_closeBtnMousePressed
-
-    private void closeBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseReleased
-        closeBtn.setBackground(new Color(232, 17, 35));
-    }//GEN-LAST:event_closeBtnMouseReleased
-
-    private void simpanBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseMoved
-        btnStyle.borderMouseMoved(simpanBtn);
-    }//GEN-LAST:event_simpanBtnMouseMoved
-
-    private void simpanBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseClicked
-        if (tanggalLahirDate.getDate() != null) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            tglLahir = simpleDateFormat.format(tanggalLahirDate.getDate());
-        }
-        pegawaiCtrl.editPegawai(this);
-    }//GEN-LAST:event_simpanBtnMouseClicked
-
-    private void simpanBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseExited
-        btnStyle.borderMouseExit(simpanBtn);
-    }//GEN-LAST:event_simpanBtnMouseExited
-
-    private void simpanBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMousePressed
-        btnStyle.backgroundMousePressed(simpanBtn);
-    }//GEN-LAST:event_simpanBtnMousePressed
-
-    private void simpanBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseReleased
-        btnStyle.backgroundMouseReleased(simpanBtn);
-    }//GEN-LAST:event_simpanBtnMouseReleased
 
     private void potoBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseMoved
         btnStyle.borderMouseMoved(potoBtn);
@@ -594,18 +490,18 @@ public class pegawaiEdit extends javax.swing.JDialog {
 
     private void potoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseClicked
         JFileChooser jfc = new JFileChooser();
-        FileFilter pngFilter = new FileNameExtensionFilter("Gambar GIF", "png");
+        FileFilter pngFilter = new FileNameExtensionFilter("photo (.png)", "png");
         jfc.setAcceptAllFileFilterUsed(false);
         jfc.addChoosableFileFilter(pngFilter);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             pathPhoto = jfc.getSelectedFile().toString();
             if (!"".equals(pathPhoto)) {
                 pathPhoto = pathPhoto.replace("\\", "/");
-                    BufferedImage loadImg = photoStyle.loadImage(pathPhoto);
-                    ImageIcon imageIcon = new ImageIcon(photoStyle.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
-                    potoLabel.setIcon(imageIcon);
-                }
+                BufferedImage loadImg = photoStyle.loadImage(pathPhoto);
+                ImageIcon imageIcon = new ImageIcon(photoStyle.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
+                potoLabel.setIcon(imageIcon);
             }
+        }
     }//GEN-LAST:event_potoBtnMouseClicked
 
     private void potoBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseExited
@@ -619,31 +515,6 @@ public class pegawaiEdit extends javax.swing.JDialog {
     private void potoBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoBtnMouseReleased
         btnStyle.backgroundMouseReleased(potoBtn);
     }//GEN-LAST:event_potoBtnMouseReleased
-
-    private void potoundoBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoundoBtnMouseMoved
-        btnStyle.borderMouseMoved(potoundoBtn);
-    }//GEN-LAST:event_potoundoBtnMouseMoved
-
-    private void potoundoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoundoBtnMouseClicked
-        if (!"null".equals(pathRestorePhoto)) {
-            pathPhoto = pathRestorePhoto;
-            BufferedImage loadImg = photoStyle.loadImage(pathPhoto);
-            ImageIcon imageIcon = new ImageIcon(photoStyle.resize(loadImg, potoLabel.getWidth() - 1, potoLabel.getHeight() - 1));
-            potoLabel.setIcon(imageIcon);
-        }
-    }//GEN-LAST:event_potoundoBtnMouseClicked
-
-    private void potoundoBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoundoBtnMouseExited
-        btnStyle.borderMouseExit(potoundoBtn);
-    }//GEN-LAST:event_potoundoBtnMouseExited
-
-    private void potoundoBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoundoBtnMousePressed
-        btnStyle.backgroundMousePressed(potoundoBtn);
-    }//GEN-LAST:event_potoundoBtnMousePressed
-
-    private void potoundoBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoundoBtnMouseReleased
-        btnStyle.backgroundMouseReleased(potoundoBtn);
-    }//GEN-LAST:event_potoundoBtnMouseReleased
 
     private void potoCancleBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_potoCancleBtnMouseMoved
         btnStyle.borderMouseMoved(potoCancleBtn);
@@ -666,19 +537,56 @@ public class pegawaiEdit extends javax.swing.JDialog {
         btnStyle.backgroundMouseReleased(potoCancleBtn);
     }//GEN-LAST:event_potoCancleBtnMouseReleased
 
+    private void simpanBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseMoved
+        btnStyle.borderMouseMoved(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseMoved
+
+    private void simpanBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseClicked
+        if (tanggalLahirDate.getDate() != null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tglLahir = simpleDateFormat.format(tanggalLahirDate.getDate());
+        }
+        pegawaiCtrl.addPegawai(this);
+    }//GEN-LAST:event_simpanBtnMouseClicked
+
+    private void simpanBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseExited
+        btnStyle.borderMouseExit(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseExited
+
+    private void simpanBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMousePressed
+        btnStyle.backgroundMousePressed(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMousePressed
+
+    private void simpanBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanBtnMouseReleased
+        btnStyle.backgroundMouseReleased(simpanBtn);
+    }//GEN-LAST:event_simpanBtnMouseReleased
+
+    private void closeBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseMoved
+        closeBtn.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_closeBtnMouseMoved
+
+    private void closeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_closeBtnMouseClicked
+
+    private void closeBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseExited
+        btnStyle.backgroundMouseExit(closeBtn);
+    }//GEN-LAST:event_closeBtnMouseExited
+
+    private void closeBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMousePressed
+        btnStyle.backgroundMousePressed(closeBtn);
+    }//GEN-LAST:event_closeBtnMousePressed
+
+    private void closeBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeBtnMouseReleased
+        closeBtn.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_closeBtnMouseReleased
+
     private void tanggalLahirDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalLahirDatePropertyChange
         if (tanggalLahirDate.getDate() != null) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             tglLahir = simpleDateFormat.format(tanggalLahirDate.getDate());
         }
     }//GEN-LAST:event_tanggalLahirDatePropertyChange
-
-    private void simpanBtnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_simpanBtnPropertyChange
-        if (tanggalLahirDate.getDate() != null) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            tglLahir = simpleDateFormat.format(tanggalLahirDate.getDate());
-        }
-    }//GEN-LAST:event_simpanBtnPropertyChange
 
     /**
      * @param args the command line arguments
@@ -697,20 +605,20 @@ public class pegawaiEdit extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(pegawaiEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PegawaiNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(pegawaiEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PegawaiNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(pegawaiEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PegawaiNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(pegawaiEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PegawaiNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                pegawaiEdit dialog = new pegawaiEdit(new javax.swing.JFrame(), true);
+                PegawaiNew dialog = new PegawaiNew(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -747,9 +655,9 @@ public class pegawaiEdit extends javax.swing.JDialog {
     private javax.swing.JLabel potoBtn;
     private javax.swing.JLabel potoCancleBtn;
     private javax.swing.JLabel potoLabel;
-    private javax.swing.JLabel potoundoBtn;
     private javax.swing.JLabel simpanBtn;
     private javax.swing.JPanel slide1Panel;
+    private javax.swing.JPanel slide2Panel;
     private com.toedter.calendar.JDateChooser tanggalLahirDate;
     private javax.swing.JTextField tempatLahirTextFiled;
     private javax.swing.JLabel validasiPesanLabel;

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import myBank.database.connectionDatabase;
-import myBank.model.userEntity;
+import myBank.model.UserEntity;
 
 /**
  *
@@ -18,10 +18,10 @@ import myBank.model.userEntity;
  */
 public class loginDao {
 
-    userEntity listUser = new userEntity();
+    UserEntity listUser = new UserEntity();
     connectionDatabase conn = new connectionDatabase();
 
-    public userEntity loadUser() {
+    public UserEntity loadUser() {
         return listUser;
     }
 

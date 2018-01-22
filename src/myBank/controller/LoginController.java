@@ -7,7 +7,7 @@ package myBank.controller;
 
 import javax.swing.JOptionPane;
 import myBank.dao.loginDao;
-import myBank.model.userEntity;
+import myBank.model.UserEntity;
 import myBank.view.customerService.customerServiceFrame;
 import myBank.view.login.loginFrame;
 import myBank.view.teller.tellerFrame;
@@ -30,7 +30,7 @@ public class LoginController {
                 view.setMessageValidasi("Isi Password user", true);
             } else {                
                 if (dao.cekLogin(idUser, pass) == true) {
-                    userEntity listUser = dao.loadUser();                    
+                    UserEntity listUser = dao.loadUser();                    
                     switch(listUser.getjabatan()){
                         case "TELLER":
                             tellerFrame teller = new tellerFrame(listUser.getId_user(), listUser.getNama(), listUser.getPhoto());                            
